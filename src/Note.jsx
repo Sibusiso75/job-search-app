@@ -11,7 +11,7 @@ function Note() {
         <Link to="/"  ><FaHome/> Home </Link>
         <Link to="/posts"><MdArticle/> Posts</Link>
           <Link to="/savedJobs"> <MdWork/> Saved Jobs</Link>
-          <Link to="/info"         style={{borderBottom:"2px double white"}}
+          <Link to="/info" style={{position:"fixed",right:"15px",borderBottom:"2px double white"}}
 > <FaInfoCircle/> Info</Link>
 
        

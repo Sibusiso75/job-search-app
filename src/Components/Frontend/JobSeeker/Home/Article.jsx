@@ -45,7 +45,7 @@ function Article() {
 // },[])
   useEffect(() => {
     const fetchArticles = async () => {
-      const response = await fetch("http://localhost:5000/articles")
+      const response = await fetch("https://job-search-api-n5ob.onrender.com/articles")
       const data = await response.json()
       dispatch(getArticle(data))
     }
@@ -71,7 +71,7 @@ function Article() {
         <Link to="/posts" style=
         {{borderBottom:"2px double white"}}><MdArticle/> Posts</Link>
           <Link to="/savedJobs"> <MdWork/> Saved Jobs</Link>
-          <span style={{position:"fixed",right:"10px",
+          <span style={{position:"fixed",right:"15px",
      float:"right",background:"rgb(0,0,10)", color:"white"}} onClick={()=>setShow(!show)} >
                                  {show?<span><FaRegWindowClose/></span>:<span><FaAlignJustify/></span>} 
                             </span>

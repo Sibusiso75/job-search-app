@@ -97,7 +97,7 @@ function Home() {
 // https://job-search-api-n5ob.onrender.com
  useEffect(() => {
    const fetchJobs = async ()=>{
-    const response = await fetch("http://localhost:5000/jobs")
+    const response = await fetch("https://job-search-api-n5ob.onrender.com/jobs")
     const data = await response.json()
 
     dispatch(getJob(data))
@@ -136,7 +136,7 @@ function Home() {
         <Link to="/posts"><MdArticle/> Posts</Link>
           <Link to="/savedJobs"> <MdWork/> Saved Jobs</Link>
        
-                <span style={{position:"fixed",right:"10px",
+                <span style={{position:"fixed",right:"15px",
      float:"right",background:"rgb(0,0,10)", color:"white"}} onClick={()=>setShow(!show)} >
                                  {show?<span><FaRegWindowClose/></span>:<span><FaAlignJustify/></span>} 
                             </span>
