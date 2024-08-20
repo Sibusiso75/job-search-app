@@ -1,0 +1,397 @@
+textarea{
+  width: fit-content;
+  height: fit-content;
+  scroll-behavior: unset;
+  border-radius: 15px;
+  outline: none;
+}
+.footer {
+  position: relative;
+  bottom: 0px;
+  padding:0px;
+  margin:0px;
+  width:100%;
+  
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  background: rgba(22, 22, 25, 0.927);
+  color: whitesmoke;
+}
+
+.likes:hover{
+  cursor:pointer;
+}
+@media (max-width:767px){
+  body{
+    margin:0px;
+    padding:0px;
+
+  }
+  .articleContainer{
+    margin:10px;
+    margin-left:-20px;
+    box-shadow:1px 1px -2px 3px black;
+    border:1px solid gray;
+    width:100%;
+
+    padding:10px;
+  }
+  label{
+    font-weight: bold;
+  }
+  .searchFormAndCategories{
+    display:flex;
+  }
+  .searchFormAndCategoriesColumn{
+    display:flex;
+    flex-direction: column;
+  }
+  .cartNav{
+    position:fixed;
+    padding:10px;
+    width:100%;
+    display: flex;
+     gap:2.3rem;
+
+    background-image:linear-gradient(to right, rgba(30, 29, 40, 0.957), rgb(31, 11, 11));
+       
+  }
+ 
+  .sidebar{
+    background-image:linear-gradient(to right, rgba(30, 29, 33, 0.957), rgb(31, 11, 11));
+    gap:1rem;
+    display: flex;
+    flex-direction: column;
+    width:100px;
+    position: relative;
+    height:10000px;
+
+    color:white;
+  }
+   
+  a:link{
+    text-decoration: none;
+padding: 5px;   
+color:white;
+
+    
+  }
+  a:visited{
+    color:white;
+
+  } 
+  a:hover{
+    background:rgb(37, 37, 48);
+  } 
+  
+  
+  .itemsContainer {
+    display: flex;
+    justify-content:space-evenly;
+    word-wrap: break-word;
+    padding:20px;
+    margin: 10px;
+
+    gap:1rem;
+ flex-direction: column;
+    flex-wrap: wrap;
+    width:350px;
+    box-shadow:-1px -1px 3px 1px black;
+   
+  
+  }
+  .itemsContainer:hover{
+    cursor: pointer;
+  }
+  .singleJob{
+    justify-content:space-evenly;
+    word-wrap: break-word;
+    padding:10px;
+    margin: 10px;
+    display:flex;
+    gap:1rem;
+    width:500px;
+
+    flex-wrap: wrap;
+  }
+   select,input, .btn2, textarea{
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    padding:10px;
+    margin:10px;
+    gap:1.2rem;
+  }
+  textarea{
+    height:80px;
+  }
+  input{
+    border: 1px solid black;
+  }
+  .btn2 {
+    background:orange;
+  align-items: center;
+    font-weight: bold;
+  }
+
+}
+@media (min-width:767px) and (max-width:1023px){
+  body{
+    margin:0px;
+    padding:0px;
+
+  }
+  .articleContainer{
+    margin:10px;
+    box-shadow:-1px 1px -2px 3px black;
+    border:1px solid gray;
+    padding:10px;
+  }
+  .searchFormAndCategories{
+    display:flex;
+  }
+  label{
+    font-weight: bold;
+  }
+  
+  .cartNav{
+    position:fixed;
+  width:100%;
+    padding:10px;
+    display: flex;
+    gap:2.3rem;
+    background-image:linear-gradient(to right, rgba(30, 29, 40, 0.957), rgb(31, 11, 11));
+       
+  }
+ 
+  .sidebar{
+    background-image:linear-gradient(to right, rgba(30, 29, 33, 0.957), rgb(31, 11, 11));
+    gap:1rem;
+    display: flex;
+    flex-direction: column;
+    width:100px;
+    
+    height: 10000px;
+
+  }
+  a:link{
+    text-decoration: none;
+padding: 5px;   
+color:white;
+
+    
+  }
+  a:visited{
+    color:white;
+
+  } 
+  a:hover{
+    background:rgb(37, 37, 48);
+  } 
+  
+  
+  .itemsContainer {
+     display: flex;
+ flex-direction: column;
+    justify-content:space-evenly;
+    word-wrap: break-word;
+    padding:20px;
+    margin: 10px;
+    flex-wrap: wrap;
+    box-shadow:-1px -1px 3px 1px black;
+  width:300px;
+  height:300px;
+
+   
+  
+  }
+  .itemsContainer:hover{
+    cursor: pointer;
+  }
+  .singleJob{
+    justify-content:space-evenly;
+    word-wrap: break-word;
+    padding:10px;
+    margin: 10px;
+    display:flex;
+    gap:1rem;
+    width:500px;
+
+    flex-wrap: wrap;
+  }
+  select,input, .btn2, textarea{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding:10px;
+    margin:10px;
+    gap:1.5rem;
+  }
+  textarea{
+    height:80px;
+  }
+  input{
+    border: 1px solid black;
+  }
+  .btn2 {
+    background:orange;
+  align-items: center;
+    font-weight: bold;
+  }
+
+}
+@media (min-width:1024px){
+  body{
+    margin:0px;
+    padding:0px;
+
+  }
+  .searchFormAndCategories{
+    display:flex;
+  }
+  .articleContainer{
+    margin:10px;
+    box-shadow:-1px 1px -2px 3px black;
+    border:1px solid gray;
+    padding:10px;
+  }
+  .articleContainer:hover{
+    cursor: pointer;
+  }
+  label{
+    font-weight: bold;
+  }
+  .showInfo{
+   display:flex;
+   float:right;
+   flex-direction:column;
+   background:rgb(0, 0, 10);
+   color:white;
+   height:200px; 
+   width:100px;
+  }
+  .cartNav{
+    position:fixed;
+    width:100%;
+    padding:10px;
+    color:gray;
+    font-size: 15px;
+
+    display: flex;
+    justify-items: flex-end;
+    gap:2.3rem;
+    background:rgb(0, 0, 10);
+
+
+    /* background-image:linear-gradient(to right, rgba(30, 29, 33, 0.957), rgb(31, 11, 11)); */
+       
+  }
+  
+ 
+  .sidebar{
+    background-image:linear-gradient(to right, rgba(30, 29, 33, 0.957), rgb(31, 11, 11));
+    gap:1rem;
+    display: flex;
+    flex-direction: column;
+    
+    width:100px;
+    height:10000px;
+  }
+  a:link{
+    text-decoration: none;
+padding: 5px;   
+color:white;
+
+    
+  }
+ 
+  a:visited{
+    color:white;
+
+  } 
+  a:hover{
+    background:rgb(37, 37, 48);
+    color:white;
+  } 
+  
+  
+  .itemsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+    word-wrap: break-word;
+    padding:20px;
+    margin: 10px;
+    flex-wrap: wrap;
+    box-shadow:-1px -1px 3px 1px black;
+  width:300px;
+  height:300px;
+
+   
+  
+  }
+  .itemsContainer:hover{
+    cursor: pointer;
+  }
+  .singleJob{
+    justify-content:space-evenly;
+    word-wrap: break-word;
+    padding:10px;
+    margin: 10px;
+    display:flex;
+    gap:1rem;
+    width:500px;
+
+    flex-wrap: wrap;
+  }
+  .jobSaved{
+    display:flex;
+    flex-direction: column;
+    padding:10px;
+    margin: 10px;
+    width:300px;
+    gap:1rem;
+
+  }
+  /*sidebar */
+  .side-navbar{
+    width:240px;
+    height:100%;
+    position:absolute;
+    left:-300px;
+    background:black;
+    transition: 0.5s;
+  }
+  .site-container{
+    transition: 0.4s;
+  }
+  .active-cont{
+    margin-left: 240px;
+  }
+ 
+  .active-nav{
+    margin-left: 0px;
+  }
+  select,input, .btn2, textarea{
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    padding:10px;
+    margin:10px;
+    gap:1.5rem;
+  }
+  textarea{
+    height:80px;
+  }
+  input{
+    border: 1px solid black;
+  }
+  .btn2 {
+    background:orange;
+  align-items: center;
+    font-weight: bold;
+  }
+
+}
