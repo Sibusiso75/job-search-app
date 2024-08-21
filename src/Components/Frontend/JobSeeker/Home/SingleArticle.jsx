@@ -19,15 +19,15 @@ function SingleArticle() {
 
   
   return (
-    <div>
+    <div >
   
       <button onClick={() => navigate("/posts")}
         style={{ background: "gray", color: "whitesmoke", fontWeight: "bold" }}>
         <FaArrowCircleLeft />
       </button>
-      <div style={{opacity:showLikes?"0.7":1, padding: "10px", top: "0px", height: "fit-content", position: "relative" }}>
+      <div style={{opacity:showLikes?"0.7":1,  padding: "10px", top: "0px", height: "fit-content", position: "relative" }}>
 
-        <div style={{ display: "flex" }
+        <div style={{ display: "flex"}
         }>
 
           <FaUserCircle style={{ borderRadius: "30px", fontSize: "30px" }} /> <h5>{article.name}</h5>
@@ -131,11 +131,13 @@ function SingleArticle() {
         <div style={{display:"flex"}}>
 
         <input type="text" placeholder="write a comment" style={{ outline:"none",borderRadius: "20px", padding: "10px" }} />
-        <button style={{ marginLeft:"0px",margin:"20px",height:"50px",background: "teal" }}>Post comment</button>
+        <button style={{ marginLeft:"0px",margin:"15px",height:"40px",background: "teal" }}>Post comment</button>
         </div>
+        <div style={{height:"100vh"}}>
+
         {
           article.comments.map((c) => {
-            return <div key={c.id} style={{ display: "flex", flexDirection: "column",border:"1px dotted lightgray", borderRadius: "10px", padding: "20px", width: "35%" }}>
+            return <div key={c.id} className='comments'>
               <div style={{ display: "flex", gap: "0.2rem" }}>
    
 <FaUserCircle style={{ fontSize: "30px" }} />{c.username} {article.name==c.username? "(author)": ""},
@@ -193,8 +195,8 @@ function SingleArticle() {
 
             </div>
 
-          })
-        }
+})
+}
 
                   <input  style={{height:"30px"}} type="text" placeholder="write a reply" />
                   <button>Send <BsSend/></button>
@@ -204,11 +206,12 @@ function SingleArticle() {
              
             </div>
 
-          })
-        }
+})
+}
 
 
 
+</div>
       </div>
 
           }

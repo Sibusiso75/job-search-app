@@ -98,7 +98,7 @@ function SavedJobs() {
 
  useEffect(() => {
    const fetchJobs = async ()=>{
-    const response = await fetch("https://job-search-api-n5ob.onrender.com/savedJobs")
+    const response = await fetch("http://localhost:5000/savedJobs")
     const data = await response.json()
 
     dispatch(getSavedJob(data))
@@ -145,8 +145,8 @@ function SavedJobs() {
         <Link to="/posts"><MdArticle/> Posts</Link>
           <Link to="/savedJobs" style={{borderBottom:"2px double white"}} > <MdWork/> Saved Jobs</Link>
        
-                <span style={{position:"fixed",right:"15px",
-     float:"right",background:"rgb(0,0,10)", color:"white"}} onClick={()=>setShow(!show)} >
+                <span style={{position:"fixed",right:"25px",
+     background:"rgb(0,0,10)", color:"white"}} onClick={()=>setShow(!show)} >
                                  {show?<span><FaRegWindowClose/></span>:<span><FaAlignJustify/></span>} 
                             </span>
       </header>
@@ -250,12 +250,12 @@ function SavedJobs() {
          </Row>
 
         
-        <div>
+        <div >
   {/* {jobs.length===0 && <h3>No jobs found</h3>} */}
             {
                 j.map((job)=>{
-                      return <div key={job.id} className='jobSaved'>
-                         <div onClick={()=>navigate(`/job/${job.id}`)}>
+                      return <div key={job.id} className='articleContainer'>
+                         <div >
                         <p><b>Job Title - </b>{job.title}</p>
                         <p><b>Posted in </b>{job.posted}</p>
                         <p><b><FaSearchLocation/>{job.province}</b> - {job.area}</p>

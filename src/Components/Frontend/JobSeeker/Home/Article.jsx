@@ -45,7 +45,7 @@ function Article() {
 // },[])
   useEffect(() => {
     const fetchArticles = async () => {
-      const response = await fetch("https://job-search-api-n5ob.onrender.com/articles")
+      const response = await fetch("http://localhost:5000/articles")
       const data = await response.json()
       dispatch(getArticle(data))
     }
@@ -72,7 +72,7 @@ function Article() {
         {{borderBottom:"2px double white"}}><MdArticle/> Posts</Link>
           <Link to="/savedJobs"> <MdWork/> Saved Jobs</Link>
           <span style={{position:"fixed",right:"15px",
-     float:"right",background:"rgb(0,0,10)", color:"white"}} onClick={()=>setShow(!show)} >
+     background:"rgb(0,0,10)", color:"white"}} onClick={()=>setShow(!show)} >
                                  {show?<span><FaRegWindowClose/></span>:<span><FaAlignJustify/></span>} 
                             </span>
                                
@@ -92,12 +92,12 @@ function Article() {
      }
      <br />
 
-          <div style={{display:"flex",gap:"0.3rem"}}>
-          <textarea onChange={(e)=>setPost(e.target.value)}style={{ borderRadius:"5px",height:"70px"}} placeholder="What's on your mind?" />
-              <button onClick={postSubmit} style={{ background:"rgb(0,0,15)",borderRadius:"5px",color:"white",marginTop:"15px",width:"200px",height:"60px"}}>
+          <main style={{display:"flex",flexgap:"0.3rem"}}>
+          <textarea onChange={(e)=>setPost(e.target.value)}style={{ borderRadius:"5px"}} placeholder="What's on your mind?" />
+              <button onClick={postSubmit} style={{height:"fit-content",background:"rgb(0,0,15)",marginTop:"15px",padding:"10px",borderRadius:"5px",color:"white"}}>
               Post 
               </button>
-          </div>
+          </main>
 
         {articles.map((article) => {
           return <ArticleProps key={article.id} {...article}/>

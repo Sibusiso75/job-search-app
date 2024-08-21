@@ -29,14 +29,26 @@ textarea{
     padding:0px;
 
   }
+  .comments{
+    display:flex; flex-direction: column;
+    border:1px dotted lightgray;
+     border-radius: 10px;
+      padding:10px;
+      flex-wrap: wrap;
+      word-wrap: break-word;
+      width:90%;
+  }
   .articleContainer{
     margin:10px;
-    margin-left:-20px;
-    box-shadow:1px 1px -2px 3px black;
+    box-shadow:-1px 1px -2px 3px black;
     border:1px solid gray;
-    width:100%;
-
     padding:10px;
+    word-wrap: break-word;
+    width:92%;
+  }
+  .singleArticle{
+    box-shadow:-1px 1px -2px 3px black;
+    border:1px solid gray;
   }
   label{
     font-weight: bold;
@@ -88,17 +100,15 @@ color:white;
   
   
   .itemsContainer {
-    display: flex;
-    justify-content:space-evenly;
-    word-wrap: break-word;
-    padding:20px;
-    margin: 10px;
+    margin:10px;
+    width:380px;
+         display: flex;
+         flex-direction: column;
+         margin-bottom:0px;
+         box-shadow:-1px -1px 3px 1px black;
 
-    gap:1rem;
- flex-direction: column;
-    flex-wrap: wrap;
-    width:350px;
-    box-shadow:-1px -1px 3px 1px black;
+      padding:10px;
+      gap:1rem;
    
   
   }
@@ -148,6 +158,8 @@ color:white;
     box-shadow:-1px 1px -2px 3px black;
     border:1px solid gray;
     padding:10px;
+    width:98%;
+
   }
   .searchFormAndCategories{
     display:flex;
@@ -155,7 +167,13 @@ color:white;
   label{
     font-weight: bold;
   }
-  
+  .comments{
+    display:flex; flex-direction: column;
+    border:1px dotted lightgray;
+     border-radius: 10px;
+      padding:20px;
+      width:70%;
+  }
   .cartNav{
     position:fixed;
   width:100%;
@@ -256,6 +274,16 @@ color:white;
     box-shadow:-1px 1px -2px 3px black;
     border:1px solid gray;
     padding:10px;
+    width:98%;
+
+  }
+  
+  .comments{
+    display:flex; flex-direction: column;
+    border:1px dotted lightgray;
+     border-radius: 10px;
+      padding:20px;
+      width:40%;
   }
   .articleContainer:hover{
     cursor: pointer;
@@ -263,6 +291,7 @@ color:white;
   label{
     font-weight: bold;
   }
+
   .showInfo{
    display:flex;
    float:right;
