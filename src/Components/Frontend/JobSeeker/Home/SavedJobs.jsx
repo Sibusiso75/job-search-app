@@ -98,7 +98,7 @@ function SavedJobs() {
 
  useEffect(() => {
    const fetchJobs = async ()=>{
-    const response = await fetch("http://localhost:5000/savedJobs")
+    const response = await fetch("https://job-search-api-n5ob.onrender.com/savedJobs")
     const data = await response.json()
 
     dispatch(getSavedJob(data))

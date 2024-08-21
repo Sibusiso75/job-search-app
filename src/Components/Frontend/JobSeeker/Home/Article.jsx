@@ -45,7 +45,7 @@ function Article() {
 // },[])
   useEffect(() => {
     const fetchArticles = async () => {
-      const response = await fetch("http://localhost:5000/articles")
+      const response = await fetch("https://job-search-api-n5ob.onrender.com/articles")
       const data = await response.json()
       dispatch(getArticle(data))
     }
