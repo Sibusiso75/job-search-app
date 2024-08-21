@@ -16,7 +16,7 @@ function ArticleProps({id,comments,likes,name,date,time,post}) {
         }>
 
           <FaUserCircle style={{borderRadius:"30px",fontSize:"30px"}}/> <p><b>{name}</b></p>
-          ,<p style={{ color:"gray"}}>{date}, {time}</p>
+          <p className='date'>{date} {time}</p>
           </span>
           {/* <p><b>Title: </b>{title}</p> */}
 

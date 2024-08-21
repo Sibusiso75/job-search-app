@@ -29,6 +29,14 @@ textarea{
     padding:0px;
 
   }
+  .likes{
+    display:flex;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+  }
+  likes:hover{
+    cursor:pointer;
+  }
   .comments{
     display:flex; flex-direction: column;
     border:1px dotted lightgray;
@@ -38,13 +46,18 @@ textarea{
       word-wrap: break-word;
       width:90%;
   }
+  .date{
+    text-align:right;
+    font-size: 11px;
+    color:gray;
+}
   .articleContainer{
     margin:10px;
     box-shadow:-1px 1px -2px 3px black;
     border:1px solid gray;
     padding:10px;
     word-wrap: break-word;
-    width:92%;
+    width:290px;
   }
   .singleArticle{
     box-shadow:-1px 1px -2px 3px black;
@@ -101,7 +114,7 @@ color:white;
   
   .itemsContainer {
     margin:10px;
-    width:380px;
+    width:290px;
          display: flex;
          flex-direction: column;
          margin-bottom:0px;
@@ -152,6 +165,10 @@ color:white;
     margin:0px;
     padding:0px;
 
+  }
+  .date{
+    text-align:right;
+    color:gray;
   }
   .articleContainer{
     margin:10px;
@@ -374,6 +391,10 @@ color:white;
     width:500px;
 
     flex-wrap: wrap;
+  }
+  .date{
+    text-align:right;
+    color:gray;
   }
   .jobSaved{
     display:flex;
