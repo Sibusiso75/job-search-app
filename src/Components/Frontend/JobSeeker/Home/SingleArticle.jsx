@@ -126,7 +126,7 @@ function SingleArticle() {
 
             </div>
             :
-            <div style={{height:"1000px",display:"flex",flexDirection:"column",   background: "rgb(0,0,10)", padding: "10px", color: "white" }}>
+            <div style={{height:"1020px",display:"flex",flexDirection:"column",   background: "rgb(0,0,10)", padding: "10px", color: "white" }}>
 
         <div >
 
