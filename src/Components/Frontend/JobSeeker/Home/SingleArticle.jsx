@@ -126,14 +126,14 @@ function SingleArticle() {
 
             </div>
             :
-            <div style={{height:article.comments.length==0?"50vh":"fit-content",display:"flex",flexDirection:"column",gap:"1rem", position: "relative", bottom: "0px", width: "100%", background: "rgb(0,0,10)", padding: "10px", color: "white" }}>
+            <div style={{height:"1000px",display:"flex",flexDirection:"column",   background: "rgb(0,0,10)", padding: "10px", color: "white" }}>
 
-        <div style={{display:"flex"}}>
+        <div >
 
         <input type="text" placeholder="write a comment" style={{ outline:"none",borderRadius: "20px", padding: "10px" }} />
         <button style={{ marginLeft:"0px",margin:"15px",height:"40px",background: "teal" }}>Post comment</button>
         </div>
-        <div style={{height:"100vh"}}>
+        <div >
 
         {
           article.comments.map((c) => {

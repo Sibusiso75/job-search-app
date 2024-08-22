@@ -44,7 +44,8 @@ textarea{
       padding:10px;
       flex-wrap: wrap;
       word-wrap: break-word;
-      width:90%;
+      width:fit-content;
+      height:fit-content;
   }
   .post{
     display:flex;
@@ -222,7 +223,7 @@ color:white;
        
   }
  
-  
+
   .sidebar{
     background-image:linear-gradient(to right, rgba(30, 29, 33, 0.957), rgb(31, 11, 11));
     gap:1rem;
@@ -465,6 +466,7 @@ color:white;
     margin:10px;
     gap:1.5rem;
   }
+
   textarea{
     height:80px;
   }
