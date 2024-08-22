@@ -50,11 +50,7 @@ function JobProps({id, title, posted, level,province, area}) {
     }
     
   return (
-    <div>
-      
-       <div
-                      
-                     className='itemsContainer'>
+      <div className='itemsContainer'>
           <div onClick={()=>navigate(`/job/${id}`)}>
                         <p><b>Job Title - </b>{title}</p>
                         <p><b>Posted in </b>{posted}</p>
@@ -73,7 +69,6 @@ function JobProps({id, title, posted, level,province, area}) {
                           </div>
                     </div>
                
-        </div>
   )
 }
 

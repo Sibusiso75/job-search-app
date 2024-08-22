@@ -45,7 +45,7 @@ function Article() {
 // },[])
   useEffect(() => {
     const fetchArticles = async () => {
-      const response = await fetch("https://job-search-api-n5ob.onrender.com/articles")
+      const response = await fetch("http://localhost:5000/articles")
       const data = await response.json()
       dispatch(getArticle(data))
     }
@@ -71,8 +71,7 @@ function Article() {
         <Link to="/posts" style=
         {{borderBottom:"2px double white"}}><MdArticle/> Posts</Link>
           <Link to="/savedJobs"> <MdWork/> Saved Jobs</Link>
-          <span style={{position:"fixed",right:"15px",
-     background:"rgb(0,0,10)", color:"white"}} onClick={()=>setShow(!show)} >
+          <span className='alignRight' onClick={()=>setShow(!show)} >
                                  {show?<span><FaRegWindowClose/></span>:<span><FaAlignJustify/></span>} 
                             </span>
                                
@@ -80,7 +79,7 @@ function Article() {
 
         
         <div>
-        <br /><br />        
+        <br /><br />  
         {show?  <div style={{position:"fixed",right:"2px",display:"flex",flexDirection:"column",
      gap:"1rem",float:"right",background:"rgb(0,0,10)", color:"white", marginRight:"0px",width:"300px", padding:"10px"}}>
                  <Link to="/info">Info <FaInfoCircle/> <FaChevronRight style={{float:"right"}}/> </Link>
@@ -92,12 +91,12 @@ function Article() {
      }
      <br />
 
-          <main style={{display:"flex",flexgap:"0.3rem"}}>
-          <textarea onChange={(e)=>setPost(e.target.value)}style={{ borderRadius:"5px"}} placeholder="What's on your mind?" />
+          <div className='post'>
+          <textarea onChange={(e)=>setPost(e.target.value)} className="txtArea"placeholder="What's on your mind?" />
               <button onClick={postSubmit} style={{height:"fit-content",background:"rgb(0,0,15)",marginTop:"15px",padding:"10px",borderRadius:"5px",color:"white"}}>
               Post 
               </button>
-          </main>
+          </div>
 
         {articles.map((article) => {
           return <ArticleProps key={article.id} {...article}/>

@@ -97,7 +97,7 @@ function Home() {
 // https://job-search-api-n5ob.onrender.com
  useEffect(() => {
    const fetchJobs = async ()=>{
-    const response = await fetch("https://job-search-api-n5ob.onrender.com/jobs")
+    const response = await fetch("http://localhost:5000/jobs")
     const data = await response.json()
 
     dispatch(getJob(data))
@@ -135,11 +135,10 @@ function Home() {
         <Link to="/" style={{borderBottom:"2px double white"}} ><FaHome/> Home </Link>
         <Link to="/posts"><MdArticle/> Posts</Link>
           <Link to="/savedJobs"> <MdWork/> Saved Jobs</Link>
-       
-                <span style={{position:"fixed",right:"20px",
-    background:"rgb(0,0,10)", color:"white"}} onClick={()=>setShow(!show)} >
-                                 {show?<span><FaRegWindowClose/></span>:<span><FaAlignJustify/></span>} 
-                            </span>
+       <br />
+                <div className='alignRight' onClick={()=>setShow(!show)} >
+                                 {show?<div><FaRegWindowClose/></div>:<div><FaAlignJustify/></div>} 
+                            </div>
       </header>
       <br /><br />
 
@@ -215,8 +214,8 @@ function Home() {
       </div> */}
       <br /><br />
         
-         <Row className="justify-content-between mb-3">
-          <Col md={6}>
+         {/* <Row className="justify-content-between mb-3">
+          <Col md={6}> */}
             <div>
               {/* {countJobs===0? 'No':countJobs} Results
               {query!=='all'&& ':' + query} 
@@ -231,7 +230,7 @@ function Home() {
               
                </div>
 
-          </Col>
+          {/* </Col> */}
           {/* <Col className="text-end">
             Sort By {''}
             <select value={order} onChange={(e)=>{navigate(getFilterUrl({order:e.target.value}))}}>
@@ -240,7 +239,7 @@ function Home() {
                  <option value="highest">highest</option>
          </select>
           </Col> */}
-         </Row>
+         {/* </Row> */}
 
         
         <div style={{display:"flex",gap:"1rem"

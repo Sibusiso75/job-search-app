@@ -46,6 +46,12 @@ textarea{
       word-wrap: break-word;
       width:90%;
   }
+  .post{
+    display:flex;
+  }
+  .txtArea{
+    width:75%;
+  }
   .date{
     text-align:right;
     font-size: 11px;
@@ -57,7 +63,7 @@ textarea{
     border:1px solid gray;
     padding:10px;
     word-wrap: break-word;
-    width:290px;
+    width:95%;
   }
   .singleArticle{
     box-shadow:-1px 1px -2px 3px black;
@@ -73,12 +79,15 @@ textarea{
     display:flex;
     flex-direction: column;
   }
+  .alignRight{
+    color:white;
+  }
   .cartNav{
     position:fixed;
     padding:10px;
     width:100%;
     display: flex;
-     gap:2.3rem;
+     gap:0.5rem;
 
     background-image:linear-gradient(to right, rgba(30, 29, 40, 0.957), rgb(31, 11, 11));
        
@@ -111,14 +120,18 @@ color:white;
     background:rgb(37, 37, 48);
   } 
   
-  
+  p{
+    word-wrap: break-word;
+  }
   .itemsContainer {
     margin:10px;
-    width:290px;
-         display: flex;
-         flex-direction: column;
-         margin-bottom:0px;
-         box-shadow:-1px -1px 3px 1px black;
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom:0px;
+    box-shadow:-1px -1px 3px 1px black;
+    width:95%;
+    height:fit-content;
 
       padding:10px;
       gap:1rem;
@@ -142,7 +155,7 @@ color:white;
    select,input, .btn2, textarea{
     display: flex;
     flex-direction: column;
-    width: 320px;
+    width: 290px;
     padding:10px;
     margin:10px;
     gap:1.2rem;
@@ -166,6 +179,12 @@ color:white;
     padding:0px;
 
   }
+  
+  .alignRight{
+    color:white;
+    position:absolute;
+    right:10px;
+  }
   .date{
     text-align:right;
     color:gray;
@@ -186,6 +205,8 @@ color:white;
   }
   .comments{
     display:flex; flex-direction: column;
+    flex-wrap: wrap;
+    word-wrap: break-word;
     border:1px dotted lightgray;
      border-radius: 10px;
       padding:20px;
@@ -286,6 +307,12 @@ color:white;
   .searchFormAndCategories{
     display:flex;
   }
+  .post{
+    display:flex;
+  }
+  .txtArea{
+    width:30%;
+  }
   .articleContainer{
     margin:10px;
     box-shadow:-1px 1px -2px 3px black;
@@ -293,6 +320,11 @@ color:white;
     padding:10px;
     width:98%;
 
+  }
+  .alignRight{
+    color:white;
+    position: absolute;
+    right:10px;
   }
   
   .comments{

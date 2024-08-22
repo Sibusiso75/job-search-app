@@ -17,8 +17,8 @@ function Note() {
        
           
       </header>
-   <button  style={{margin:"10px"}}onClick={()=>navigate("/")}>Back home <FaHome/></button>
-          <div style={{background:"black",padding:"20px",color:"whitesmoke",margin:"50px", fontWeight:"bold"}}>
+   <button  style={{margin:"3px"}}onClick={()=>navigate("/")}>Back home <FaHome/></button>
+          <div style={{background:"black",padding:"20px",color:"whitesmoke",margin:"20px", fontWeight:"bold"}}>
           <span><FaInfoCircle/> This is a job search mock up application developed by Sibusiso Matebese. App is still in progress.</span>
 
           </div>
