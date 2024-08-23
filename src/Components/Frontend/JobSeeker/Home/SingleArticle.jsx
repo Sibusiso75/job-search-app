@@ -16,11 +16,12 @@ function SingleArticle() {
   const [showLikes, setShowLikes] = useState(false)
   const [showReplies, setShowReplies] = useState(false)
    
-
+  
   
   return (
     <div >
-  
+  <div >
+
       <button onClick={() => navigate("/posts")}
         style={{ background: "gray", color: "whitesmoke", fontWeight: "bold" }}>
         <FaArrowCircleLeft />
@@ -39,7 +40,7 @@ function SingleArticle() {
 
      
         {
-            showLikes? <div style={{ position:"absolute",background:"black",top:"-5px", color:"white",border:"1px solid black", padding:"20px", height:article.likes.length<=7?"100%":"fit-content",width:"100%"}}>
+          showLikes? <div style={{ position:"absolute",background:"black",top:"-5px", color:"white",border:"1px solid black", padding:"20px", height:article.likes.length<=7?"100%":"fit-content",width:"100%"}}>
               <div style={{display:"flex",gap:"0.5rem"}}>
 
        {article.likes.length===0? 
@@ -63,47 +64,47 @@ function SingleArticle() {
               </ol>
             </div>
             :
- 
-      
+            
+            
             <div onClick={()=>setShowLikes(!showLikes)} style={{display:"flex",gap:"0.5rem",flexDirection:"column",borderBottom:"1px solid gray",color:"gray",padding:"10px"}}>
               <span className='likes'>
               {
-            
-            article.likes.length==0?
-          <p style={{color:"gray"}}>Be the first one to like this post</p>
-
-        : 
-        article.likes.length==1? 
-
-           <span style={{fontSize:"10px", border:"1px dotted gray",borderRadius:"30px",color:"darkblue",width:"fit-content",padding:"10px"}} onClick={()=>navigate(`/singleArticle/${id}`)}>
+                
+                article.likes.length==0?
+                <p style={{color:"gray"}}>Be the first one to like this post</p>
+                
+                : 
+                article.likes.length==1? 
+                
+                <span style={{fontSize:"10px", border:"1px dotted gray",borderRadius:"30px",color:"darkblue",width:"fit-content",padding:"10px"}} onClick={()=>navigate(`/singleArticle/${id}`)}>
         <FaRegThumbsUp/>
       <span style={{color:"gray"}}>{article.likes[0].username} likes this post</span>
           </span>
 
-        : article.likes.length==2?
-           <span style={{color:"darkblue",width:"fit-content",padding:"10px"}} onClick={()=>navigate(`/singleArticle/${id}`)}>
+: article.likes.length==2?
+<span style={{color:"darkblue",width:"fit-content",padding:"10px"}} onClick={()=>navigate(`/singleArticle/${id}`)}>
         <FaRegThumbsUp/> <span style={{color:"gray"}}>{article.likes[0].username} and {article.likes[1].username} like this post</span>
           </span>
         
         :
         article.likes.length==3?
-           <span style={{color:"darkblue",width:"fit-content",padding:"10px"}}  onClick={()=>navigate(`/singleArticle/${id}`)}> <FaRegThumbsUp/>
+        <span style={{color:"darkblue",width:"fit-content",padding:"10px"}}  onClick={()=>navigate(`/singleArticle/${id}`)}> <FaRegThumbsUp/>
          <span style={{color:"gray"}}> {article.likes[0].username}, {article.likes[1].username} and {article.likes[2].username} like this post</span>
         </span>
 
-        
-       
-        :
-           <span onClick={()=>navigate(`/singleArticle/${id}`)}>
+
+
+:
+<span onClick={()=>navigate(`/singleArticle/${id}`)}>
         <FaRegThumbsUp style={{color:"blue"}}/> <span style={{color:"gray"}}>{article.likes[0].username}, {article.likes[1].username} and {article.likes.length-2} others like this post</span>
         </span>
 
-        
 
 
 
-        
-      }
+
+
+}
                 </span> 
                 
                     <span style={{display:"flex",gap:"0.3rem"}}>
@@ -119,21 +120,24 @@ function SingleArticle() {
              
             </div>
 
-          }
+}
+</div>
+{/* box-shadow:-1px 1px -2px 3px black;
+    background: rgb(0,0,15);
+    word-wrap: break-word;
+    color:white;
+    width:100%;
+    padding:10px;
+    padding-bottom: 100%; */}
          {
-            showLikes?
-            <div>
+            !showLikes &&
+            <div className='singleArticle'>
 
-            </div>
-            :
-            <div style={{height:"1020px",display:"flex",flexDirection:"column",   background: "rgb(0,0,10)", padding: "10px", color: "white" }}>
-
-        <div >
+        <div style={{display:"flex"}}>
 
         <input type="text" placeholder="write a comment" style={{ outline:"none",borderRadius: "20px", padding: "10px" }} />
         <button style={{ marginLeft:"0px",margin:"15px",height:"40px",background: "teal" }}>Post comment</button>
         </div>
-        <div >
 
         {
           article.comments.map((c) => {
@@ -197,10 +201,13 @@ function SingleArticle() {
 
 })
 }
+<div style={{display:"flex",width:"20%"}}>
 
-                  <input  style={{height:"30px"}} type="text" placeholder="write a reply" />
-                  <button>Send <BsSend/></button>
+  <input  type="text"  placeholder="write a reply" />
+                  <button  style={{margin:"1%",height:"10%",color:"gray",background:"navy"}}>Send <BsSend/></button>
+</div>
 
+                 
               </div>
              }
              
@@ -212,7 +219,6 @@ function SingleArticle() {
 
 
 </div>
-      </div>
 
           }
          

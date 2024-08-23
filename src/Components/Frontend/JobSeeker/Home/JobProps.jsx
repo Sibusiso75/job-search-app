@@ -52,9 +52,9 @@ function JobProps({id, title, posted, level,province, area}) {
   return (
       <div className='itemsContainer'>
           <div onClick={()=>navigate(`/job/${id}`)}>
-                        <p><b>Job Title - </b>{title}</p>
-                        <p><b>Posted in </b>{posted}</p>
-                        <p><b><FaSearchLocation/>{province}</b> - {area}</p>
+                        <p>Job title - <b>{title}</b></p>
+                        <p>Posted in {posted}</p>
+                        <p><FaSearchLocation/>{province},{area}</p>
 
                        
                       </div>

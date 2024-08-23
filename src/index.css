@@ -41,11 +41,20 @@ textarea{
     display:flex; flex-direction: column;
     border:1px dotted lightgray;
      border-radius: 10px;
+     gap:0.5rem;
       padding:10px;
-      flex-wrap: wrap;
-      word-wrap: break-word;
+     
       width:fit-content;
-      height:fit-content;
+
+  }
+  .reply{
+    display:flex; flex-direction: column;
+     border-radius: 10px;
+     gap:0.5rem;
+
+      padding:20px;
+      width:fit-content;
+
   }
   .post{
     display:flex;
@@ -68,8 +77,14 @@ textarea{
   }
   .singleArticle{
     box-shadow:-1px 1px -2px 3px black;
-    border:1px solid gray;
+    background: rgb(0,0,15);
+    word-wrap: break-word;
+    color:white;
+    width:100%;
+    padding:10px;
+    padding-bottom: 100%;
   }
+ 
   label{
     font-weight: bold;
   }
@@ -180,6 +195,19 @@ color:white;
     padding:0px;
 
   }
+  .post{
+    display:flex;
+  }
+  .singleArticle{
+ box-shadow:-1px 1px -2px 3px black;
+    background: rgb(0,0,15);
+    word-wrap: break-word;
+    color:white;
+    width:100%;
+    padding:10px;
+    padding-bottom: 100%;
+
+  }
   
   .alignRight{
     color:white;
@@ -208,10 +236,23 @@ color:white;
     display:flex; flex-direction: column;
     flex-wrap: wrap;
     word-wrap: break-word;
+    gap:0.5rem;
+
     border:1px dotted lightgray;
      border-radius: 10px;
       padding:20px;
-      width:70%;
+      width:fit-content;
+      
+
+  }
+  .reply{
+    display:flex; flex-direction: column;
+     border-radius: 10px;
+     gap:0.5rem;
+
+      padding:20px;
+      width:fit-content;
+
   }
   .cartNav{
     position:fixed;
@@ -333,8 +374,20 @@ color:white;
     display:flex; flex-direction: column;
     border:1px dotted lightgray;
      border-radius: 10px;
+     gap:0.5rem;
       padding:20px;
-      width:40%;
+      width:fit-content;
+      
+
+  }
+  .reply{
+    display:flex; flex-direction: column;
+     border-radius: 10px;
+     gap:0.5rem;
+
+      padding:20px;
+      width:fit-content;
+
   }
   .articleContainer:hover{
     cursor: pointer;
@@ -447,6 +500,15 @@ color:white;
     left:-300px;
     background:black;
     transition: 0.5s;
+  }
+  .singleArticle{
+    box-shadow:-1px 1px -2px 3px black;
+    background: rgb(0,0,15);
+    word-wrap: break-word;
+    color:white;
+    width:100%;
+    padding:10px;
+    padding-bottom: 100%;
   }
   .site-container{
     transition: 0.4s;
