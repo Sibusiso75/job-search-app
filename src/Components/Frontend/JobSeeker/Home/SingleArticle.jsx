@@ -133,11 +133,12 @@ function SingleArticle() {
             !showLikes &&
             <div className='singleArticle'>
 
-        <div style={{display:"flex"}}>
+        <div style={{display:"flex",flexDirection:"column"}}>
 
-        <input type="text" placeholder="write a comment" style={{ outline:"none",borderRadius: "20px", padding: "10px" }} />
-        <button style={{ marginLeft:"0px",margin:"15px",height:"40px",background: "teal" }}>Post comment</button>
+        <input type="text" placeholder="write a comment" style={{ width:"fit-content",outline:"none",borderRadius: "10px", padding: "20px" }} />
+        <button style={{ marginLeft:"2%",width:"fit-content",height:"40px",background: "teal" }}>Post comment</button>
         </div>
+        <br /><br />
 
         {
           article.comments.map((c) => {
@@ -145,7 +146,7 @@ function SingleArticle() {
               <div style={{ display: "flex", gap: "0.2rem" }}>
    
 <FaUserCircle style={{ fontSize: "30px" }} />{c.username} {article.name==c.username? "(author)": ""},
-<p style={{ color: "gray" }}>
+<p style={{ color: "gray"}}>
   {c.date}, {c.time}
 </p>
 </div>
@@ -201,10 +202,10 @@ function SingleArticle() {
 
 })
 }
-<div style={{display:"flex",width:"20%"}}>
+<div style={{display:"flex",flexDirection:"column",width:"20%"}}>
 
-  <input  type="text"  placeholder="write a reply" />
-                  <button  style={{margin:"1%",height:"10%",color:"gray",background:"navy"}}>Send <BsSend/></button>
+  <input  type="text" style={{width:"fit-content"}} placeholder="write a reply" />
+                  <button  style={{marginLeft:"10%",height:"10%",width:"fit-content",color:"gray",background:"navy"}}>Send <BsSend/></button>
 </div>
 
                  
