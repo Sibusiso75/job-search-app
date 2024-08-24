@@ -94,10 +94,9 @@ function Home() {
 //    console.log(error) }}
 // fetchCategories()
 // }, [])
-// https://job-search-api-n5ob.onrender.com
  useEffect(() => {
    const fetchJobs = async ()=>{
-    const response = await fetch("http://localhost:5000/jobs")
+    const response = await fetch("https://job-search-api-n5ob.onrender.com/jobs")
     const data = await response.json()
 
     dispatch(getJob(data))
