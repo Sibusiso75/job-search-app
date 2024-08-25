@@ -35,9 +35,9 @@ function ArticleProps({id,comments,likes,name,date,time,post}) {
           
                   
                  
-                  <span style={{fontSize:"15px", borderRadius:"30px",color:"darkblue",width:"fit-content",padding:"10px"}} onClick={()=>navigate(`/singleArticle/${id}`)}>
+                  <div style={{fontSize:"15px",borderRadius:"30px",color:"darkblue",width:"fit-content",padding:"10px"}} onClick={()=>navigate(`/singleArticle/${id}`)}>
                   <FaRegThumbsUp/> {likes.length}
-                    </span>
+                    </div>
                
                <div onClick={()=>navigate(`/singleArticle/${id}`)} style={{padding:"10px",display:"flex",gap:"1rem"}}>
 

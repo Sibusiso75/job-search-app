@@ -26,7 +26,6 @@ function SingleArticle() {
         style={{ background: "gray", color: "whitesmoke", fontWeight: "bold" }}>
         <FaArrowCircleLeft />
       </button>
-      <div style={{opacity:showLikes?"0.7":1,  padding: "10px", top: "0px", height: "fit-content", position: "relative" }}>
 
         <div style={{ display: "flex"}
         }>
@@ -36,11 +35,10 @@ function SingleArticle() {
         </div>
         <p>{article.post}</p>
 
-      </div>
 
      
         {
-          showLikes? <div style={{ position:"absolute",background:"black",top:"-5px", color:"white",border:"1px solid black", padding:"20px", height:article.likes.length<=7?"100%":"fit-content",width:"100%"}}>
+          showLikes? <div style={{ position:"absolute",background:"black",top:"-5px", color:"white",border:"1px solid black", padding:"20px", height:article.likes.length<=8?"100vh":"fit-content",width:"100%"}}>
               <div style={{display:"flex",gap:"0.5rem"}}>
 
        {article.likes.length===0? 
@@ -53,7 +51,7 @@ function SingleArticle() {
            <ol>
 
               {article.likes.map((like,index)=>{
-                return <div key={index}>
+                return <div key={index} style={{paddingBottom:"0.5%"}}>
                   <li> 
                     <FaUserCircle/> {like.username} {like.username==article.name? "(author)":""} <FaRegThumbsUp style={{color:"darkblue"}}/> 
                   </li>
@@ -138,7 +136,7 @@ function SingleArticle() {
         <input type="text" placeholder="write a comment" style={{ width:"fit-content",outline:"none",borderRadius: "10px", padding: "20px" }} />
         <button style={{ marginLeft:"2%",width:"fit-content",height:"40px",background: "teal" }}>Post comment</button>
         </div>
-        <br /><br />
+        <br />
 
         {
           article.comments.map((c) => {
