@@ -13,6 +13,8 @@ function Job() {
  const jobs = useSelector(state=>state.jobs.jobs)
  const [showForm, setShowForm]= useState(false)
  const dispatch = useDispatch()
+//  https://job-search-api-n5ob.onrender.com - Production
+// http://localhost:5000 -
   let navigate = useNavigate()
   useEffect(() => {
     const fetchJob = async ()=>{

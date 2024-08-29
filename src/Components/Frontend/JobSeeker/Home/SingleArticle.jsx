@@ -19,26 +19,26 @@ function SingleArticle() {
   
   
   return (
-    <div >
-  <div >
+    <div>
+  <div style={{padding:showLikes?"0px":"10px"}}>
 
       <button onClick={() => navigate("/posts")}
         style={{ background: "gray", color: "whitesmoke", fontWeight: "bold" }}>
         <FaArrowCircleLeft />
       </button>
+      <br />
 
-        <div style={{ display: "flex"}
+        <div style={{ display: "flex",gap:"0.2rem"}
         }>
 
-          <FaUserCircle style={{ borderRadius: "30px", fontSize: "30px" }} /> <h5>{article.name}</h5>
-          ,<p style={{ color: "gray" }}>{article.date}, {article.time}</p>
+          <FaUserCircle style={{ borderRadius: "30px", fontSize: "30px" }} /><h5>{article.name}</h5> <p style={{ color: "gray" }}>{article.date}, {article.time}</p>
         </div>
         <p>{article.post}</p>
 
 
      
         {
-          showLikes? <div style={{ position:"absolute",background:"black",top:"-5px", color:"white",border:"1px solid black", padding:"20px", height:article.likes.length<=8?"100vh":"fit-content",width:"100%"}}>
+          showLikes? <div style={{position:"absolute",background:"black",top:"-5px", color:"white",border:"1px solid black", padding:"20px", height:article.likes.length<=8?"100vh":"fit-content",width:"100%"}}>
               <div style={{display:"flex",gap:"0.5rem"}}>
 
        {article.likes.length===0? 
@@ -141,12 +141,12 @@ function SingleArticle() {
         {
           article.comments.map((c) => {
             return <div key={c.id} className='comments'>
-              <div style={{ display: "flex", gap: "0.2rem" }}>
+              <div style={{ display: "flex",gap: "0.2rem" }}>
    
-<FaUserCircle style={{ fontSize: "30px" }} />{c.username} {article.name==c.username? "(author)": ""},
-<p style={{ color: "gray"}}>
+<FaUserCircle style={{ fontSize: "30px" }} />{c.username} {article.name==c.username? "(author)": ""} <p style={{ color: "gray"}}>
   {c.date}, {c.time}
 </p>
+
 </div>
 
 <p>{c.comment}</p>
