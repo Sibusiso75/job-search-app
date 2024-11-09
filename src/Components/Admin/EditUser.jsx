@@ -17,7 +17,7 @@ function EditUser() {
     async function handleUpdate(e) {
       e.preventDefault()
       try {
-        const res = await axios.put(`http://localhost:5000/updateUser/${id}`)
+        const res = await axios.put(`https://job-search-api-n5ob.onrender.com/updateUser/${id}`)
         if(res.data.status){
   
           dispatch(updateUser(res.data))

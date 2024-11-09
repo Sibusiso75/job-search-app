@@ -18,7 +18,7 @@ function User() {
       e.preventDefault()
       try {
           
-          const response = await axios.put(`http://localhost:5000/updateUser/${id}`,{username,email})
+          const response = await axios.put(`https://job-search-api-n5ob.onrender.com/updateUser/${id}`,{username,email})
             if(response.data.status){
               dispatch(updateUser(response.data))
               toast.success("Updated successfully")

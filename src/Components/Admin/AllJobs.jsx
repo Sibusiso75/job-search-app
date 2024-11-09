@@ -12,7 +12,7 @@ function AllJobs() {
       const fetchData = async ()=>{
 try {
    
-   const response = await fetch("http://localhost:5000/allJobs")
+   const response = await fetch("https://job-search-api-n5ob.onrender.com/allJobs")
    const jobsData = await response.json()
    dispatch(getJob(jobsData))
 } catch (error) {

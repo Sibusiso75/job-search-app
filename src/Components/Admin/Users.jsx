@@ -33,7 +33,7 @@ function Users() {
            const fetchData = async ()=>{
     try {
         
-        const response = await axios.get("http://localhost:5000/admin")
+        const response = await axios.get("https://job-search-api-n5ob.onrender.com/admin")
          dispatch(getUser(response.data))
     } catch (error) {
             console.log(error)
