@@ -17,7 +17,7 @@ function AdminLogin() {
     Axios.defaults.withCredentials=true;
     function handleSubmit(e){
         e.preventDefault()
-        Axios.post("https://job-search-api-n5ob.onrender.com//adminLogin", 
+        Axios.post("https://job-search-api-n5ob.onrender.com/adminLogin", 
           { email, password}).then(response =>{
             if(response.data.status){
                 navigate("/admin/dashboard")
