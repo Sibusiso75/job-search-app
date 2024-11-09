@@ -1,14 +1,11 @@
 import React, { useEffect}from 'react'
 import axios from "axios"
 import {  useDispatch, useSelector } from 'react-redux'
-import { getemployer } from '../../redux/slices/employerslice'
+import { getEmployer } from '../../redux/slices/employerslice'
 import { useNavigate } from 'react-router-dom'
-import AdminNav from './AdminNav'
-import { FaHome, FaPlus } from 'react-icons/fa'
+import { FaHome } from 'react-icons/fa'
 function Employers() {
     let navigate = useNavigate()
-    // <div className='d-flex vh-100 justify-content-center align-items-center'>
-    // </div>
     
     const dispatch = useDispatch()
     const employers = useSelector(state=>state.employers.employers)
@@ -18,9 +15,9 @@ function Employers() {
     try {
         
         const response = await axios.get("http://localhost:5000/employers")
-         dispatch(getemployer(response.data))
+         dispatch(getEmployer(response.data))
     } catch (error) {
-            console.log(error)
+            console.log("error")
         }
     
        }
@@ -40,42 +37,31 @@ function Employers() {
                     <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Admin</th>
-                        <th>Gender</th>
-                        <th>Age</th>
-                        <th>companyName</th>
-                        <th>description</th>
-                        <th>province</th>
-                        <th>area</th>
-
-
-
-                        
-                        {/* <th>Password</th> */}
+                        <th>Phone number</th>
+                        <th>Company name</th>
+                        <th>Number of employees</th>
+                        <th>About your company</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         employers.map((employer)=>{
-                            
+
                             return <tr key={employer.id}>
                               <td>{employer.id}</td>
 
                                 <td>{employer.username}</td>
                                 <td>{employer.email}</td>
-                                <td>{employer.isAdmin}</td>
-                                <td>{employer.gender}</td>
-                                <td>{employer.age}</td>
+                                <td>{employer.phoneNumber}</td>
                                 <td>{employer.companyName}</td>
-                        <td>{employer.description}</td>
-                        <td>{employer.province}</td>
-                        <td>{employer.area}</td>
-                                {/* <td>{employer.password}</td> */}
+                                <td>{employer.numberOfEmployees}</td>
+                                <td>{employer.aboutYourCompany}</td>
+
 
                                <td style={{gap:"0.5rem"}}>
                                 <button onClick={()=>navigate(`/employer/${employer.id}`)}className='btn btn-sm btn-secondary me-2'>Edit</button>
-                                <button className='btn btn-sm btn-danger'>Delete</button>
+                                {/* <button className='btn btn-sm btn-danger'>Delete</button> */}
                                </td>
                             </tr>
                         })

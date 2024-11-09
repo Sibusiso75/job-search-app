@@ -135,8 +135,12 @@ color:white;
   } 
   a:hover{
     background:rgb(37, 37, 48);
+
   } 
-  
+  .link{
+    background:rgb(37, 37, 48);
+
+  }
   p{
     word-wrap: break-word;
   }
@@ -280,6 +284,10 @@ color:white;
     width:100px;
     
     height: 10000px;
+
+  }
+  .link{
+    background:rgb(37, 37, 48);
 
   }
   a:link{
@@ -439,6 +447,12 @@ color:white;
     width:100px;
     height:10000px;
   }
+ 
+  .link:hover{
+    background:rgb(37, 37, 48);
+
+
+  }
   a:link{
     text-decoration: none;
 padding: 5px;   
@@ -452,7 +466,7 @@ color:white;
 
   } 
   a:hover{
-    background:rgb(37, 37, 48);
+    
     color:white;
   } 
   

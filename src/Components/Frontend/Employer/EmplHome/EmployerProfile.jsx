@@ -1,7 +1,7 @@
 import React, { useState,useEffect}from 'react'
 import axios from "axios"
 import {  useDispatch, useSelector } from 'react-redux'
-import { getemployer } from '../../../../redux/slices/employerslice'
+import { getEmployer } from '../../../../redux/slices/employerslice'
 import { useNavigate,useParams } from 'react-router-dom'
 import { FaHome, FaPlus, FaUserCircle } from 'react-icons/fa'
 import { MdEmail } from 'react-icons/md'
@@ -16,15 +16,12 @@ function EmployerProfile() {
     const employers = useSelector(state=>state.employers.employers)
     const employer = employers.find(emp=>emp.id==id)
     
-    const [username, setUsername]= useState(employer.username)
     const [email, setEmail]= useState(employer.email)
+    const [username, setUsername]= useState(employer.username)
     const [companyName, setCompanyName]= useState(employer.companyName)
-    const [province, setProvince]= useState(employer.province)
-    const [area, setArea]= useState(employer.area)
-    const [description, setDescription]= useState(employer.description)
-    const [age, setAge]= useState(employer.age)
-    const [gender, setGender]= useState(employer.gender)
-
+    const [phoneNumber, setPhoneNumber]= useState(employer.phoneNumber)
+    const [numberOfEmployees, setNumberOfEmployees]= useState(employer.numberOfEmployees)
+    const [aboutYourCompany, setAboutYourCompany]= useState(employer.aboutYourCompany)
 
 
 
@@ -38,7 +35,7 @@ function EmployerProfile() {
     try {
         
         const response = await axios.get("http://localhost:5000/employers")
-         dispatch(getemployer(response.data))
+         dispatch(getEmployer(response.data))
     } catch (error) {
             console.log(error)
         }
@@ -54,24 +51,58 @@ function EmployerProfile() {
       style={{background:"green", color:"whitesmoke", fontWeight:"bold"}}>
         <FaHome/> Back home
       </button>
-      <div style={{margin:"30px"}}>
+      <form style={{margin:"30px"}}>
+    <div style={{display:"flex"}}>
 
-       
-        
-<h2>Profile</h2>
-<div className="d-grid me-2">
-<p>Fullname - <FaUserCircle/> {username} </p>
-<p>Email - <MdEmail/> {email}</p>
-<p> age - {age}</p>
-<p> gender - {gender}</p>
-<p> companyName - {companyName}</p>
-<p> province - {province}</p>
-<p> area - {area}</p>
-<p> description - {description}</p>
 
-</div>
-<button onClick={()=>navigate(`editEmployer/${id}`)}>Edit Info</button>
-</div>       
+        <input type="text" 
+           minLength={2}
+           required
+           value={username}
+           onChange={(e)=>setUsername(e.target.value)}
+           placeholder='name'/>
+            <input type="email" 
+                      
+                      value={email}
+                      required
+                      onChange={(e)=>setEmail(e.target.value)}
+                      placeholder='Email'/>
+                      </div>
+                      <div style={{display:"flex"}}>
+
+                       <input type="text" 
+                      value={companyName}
+                      
+                      required
+                      onChange={(e)=>setCompanyName(e.target.value)}
+                      placeholder='Company name'/>
+                      
+                      <input type="number" 
+                      value={phoneNumber}
+                      
+                      required
+                      onChange={(e)=>setPhoneNumber(e.target.value)}
+                      placeholder='Phone no'/>
+                       <select onChange={(e)=>setNumberOfEmployees(e.target.value)}>
+              <option value={numberOfEmployees}>{numberOfEmployees}</option>              
+                         </select>
+                      </div>
+                    
+            <div style={{display:"flex"}}>
+
+           
+           
+            </div>
+            <textarea
+            value={aboutYourCompany}
+            cols="100" rows="100"
+            style={{height:"150px"}}
+              required
+
+            onChange={(e)=>setAboutYourCompany(e.target.value)}
+            placeholder='Tell us more about your company or business '/>
+                      <button type="submit" className='btn2'>Update</button>
+                      </form>
                   
 
                             

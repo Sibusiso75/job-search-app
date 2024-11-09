@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-// import  axios from "axios"
+import  axios from "axios"
 import { Link, useNavigate } from 'react-router-dom'
-// import {toast} from "react-toastify"
-// import {  useDispatch, useSelector } from 'react-redux'
-// import { addUser } from '../../redux/slices/userslice'
+import { addEmployer } from '../../../../redux/slices/employerslice'
+import {toast} from "react-toastify"
+import {  useDispatch, useSelector } from 'react-redux'
 function EmployerSignUp() {
   /*inputs -
    1. Your company's name
@@ -28,42 +28,42 @@ function EmployerSignUp() {
     const [companyName, setCompanyName]= useState("")
     const [phoneNumber, setPhoneNumber]= useState(0)
     const [numberOfEmployees, setNumberOfEmployees]= useState("")
-    const [description, setDescription]= useState("")
-    const [province, setProvince]= useState("")
-    const [area, setArea]= useState("")
+    const [aboutYourCompany, setAboutYourCompany]= useState("")
 
 
 
 
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
 
 
-// let navigate = useNavigate()
+let navigate = useNavigate()
 
 //https://mealapp-api-2.onrender.com/register
 
-    // function handleSubmit(e){
-    //     e.preventDefault()
-    //     axios.post("http://localost:5000/register", 
-    //        {username, email, password}).then((response)=>{           
-    //            if(response.data.status){
-     //dispatch(addUser(response.data))
-     //navigate("/login")
-      //            } else{
-    //             toast.error(response.data.message)
-    //            }
-    //     }).catch(err =>{
-    //         console.log("Error")
-    //         toast.error("Error")
-    //     })
-    // }
+    function handleSubmit(e){
+        e.preventDefault()
+        axios.post("http://localhost:5000/employerRegister", 
+        {username, email, password,phoneNumber,companyName,numberOfEmployees,aboutYourCompany }).then((response)=>{           
+               if(response.data.status){
+     dispatch(addEmployer(response.data))
+     toast.success(response.data.message)
+     navigate("/employerLogin")
+                 } else{
+                toast.error(response.data.message)
+               }
+        }).catch(err =>{
+            console.log("Error")
+            toast.error("Error")
+        })
+    }
   return (
     <div style={{margin:"25px"}}>
        
     <Link to="/" style={{color:"gray",float:"right", textDecoration:"underline"}}>Browse</Link>
             <h2 style={{marginLeft:"10%"}}>Register as an employer</h2>
+            <form onSubmit={handleSubmit}>
             <label htmlFor="">First and last name</label>
            <input type="text" 
            minLength={2}
@@ -81,7 +81,7 @@ function EmployerSignUp() {
             <input type="number" 
               required
             onChange={(e)=>setPhoneNumber(e.target.value)}
-            placeholder='e.g +27712345678'/>
+            placeholder='0712345678'/>
             <label htmlFor=""> Password</label>
 
             <input type="password" 
@@ -91,7 +91,6 @@ function EmployerSignUp() {
             required
             placeholder='Enter Password'/>
         
-        {/* <form onSubmit={handleSubmit}> */}
            <label htmlFor="">Company's name</label>
            <textarea
               cols="100" rows="100"
@@ -109,38 +108,22 @@ function EmployerSignUp() {
               <option value="250-499">250-499</option>
               <option value="500-749">500-749</option>
               <option value="750-999">750-999</option>
-              <option value="1000+">1000+</option>
                          </select>
                          <label htmlFor="">Tell us more about your company</label>
                          <textarea
             cols="100" rows="100"
             style={{height:"150px"}}
               required
-            onChange={(e)=>setDescription(e.target.value)}
+            onChange={(e)=>setAboutYourCompany(e.target.value)}
            /> 
             <button type="submit" className='btn2'>Register</button>
                        
-            {/* <select onChange={(e)=>setProvince(e.target.value)}>
-              <option value="Your province">Your province</option>
-              <option value="Eastern Cape">Eastern Cape</option>
-              <option value="Western Cape">Western Cape</option>
-              <option value="Northern Cape">Northern Cape</option>
-              <option value="North west">North west</option>
-              <option value="Free state">Free state</option>
-              <option value="Gauteng">Gauteng</option>
-              <option value="KZN">KZN</option>
-              <option value="Mpumalanga">Mpumalanga</option>
-             
-              <option value="Limpopo">Limpopo</option>
-            </select>
-            <input type="text" 
-              required
-            onChange={(e)=>setArea(e.target.value)}
-            placeholder='Home town ...'/>
+           
+           
             
 
            
-        {/* </form> */}
+        </form> 
         <p>Already have an account? <Link style={{color:"blue"}} to ="/employerLogin">
                 Login
             </Link></p>

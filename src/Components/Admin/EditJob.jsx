@@ -1,11 +1,16 @@
 import React, {useState} from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import { FaHome } from 'react-icons/fa'
+import axios from "axios"
+import { updateJob } from '../../redux/slices/jobSlice'
+import { toast } from 'react-toastify'
+
 
 function EditJob() {
     let {id}=  useParams() 
     let navigate = useNavigate()
+    const dispatch = useDispatch()
     const jobs = useSelector(state=>state.jobs.jobs)
     const job = jobs.find(u=>u.id==id)
     const [title, setTitle] = useState(job.title)
@@ -13,13 +18,28 @@ function EditJob() {
     const [description, setDescription] = useState(job.description)
     const [jobLocation, setJobLocation] = useState(job.jobLocation)
     const [reside, setReside] = useState(job.reside)
-    const [jobUrl, setJobUrl] = useState(job.url)
+    const [jobUrl, setJobUrl] = useState(job.jobUrl)
+    const [jobType, setJobType] = useState(job.jobType)
     const [province, setProvince]= useState(job.province)
     const [area, setArea]= useState(job.area)
-    const [jobType, setJobType] = useState(job.jobType)
 
-
-
+async function update(e){
+  e.preventDefault()
+  try {
+    
+    const res = await axios.put(`http://localhost:5000/editJob/${id}`,{
+      title,numberOfPeopleToHire,description,jobLocation,reside,jobUrl,province,area})
+      if(res.data.status){
+        dispatch(updateJob(res.data))
+        toast.success(res.data.message)
+      }
+      else{
+        toast.error("error")
+      }
+  } catch (error) {
+    toast.error("error")
+  }
+}
    
    
       return (
@@ -28,7 +48,7 @@ function EditJob() {
       style={{background:"green", color:"whitesmoke", fontWeight:"bold"}}>
         <FaHome/> Back home
       </button>
-   <form style={{margin:"30px"}}>
+   <form style={{margin:"30px"}} onSubmit={update}>
 
    <label htmlFor="">Job Title</label>
             <input type="text" 
@@ -48,7 +68,6 @@ function EditJob() {
               <select value={numberOfPeopleToHire} onChange={(e)=>setNumberOfPeopleToHire(e.target.value)}>
               <option value="Select an option">Select an option</option>
               <option value="1">1</option>
-              <option value="2">2</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
@@ -93,7 +112,7 @@ function EditJob() {
             <label htmlFor="">Which province is this job located?</label>
             <select value={province} onChange={(e)=>setProvince(e.target.value)}>
               <option value="select an option">select an option</option>
-              <option value="Eatern Cape">Eatern Cape</option>
+              <option value="Eastern Cape">Eastern Cape</option>
               <option value="Western Cape">Western Cape </option>
               <option value="Northern Cape">Northern Cape </option>
               <option value="North West">North West </option>
@@ -116,7 +135,6 @@ function EditJob() {
            <label htmlFor="">Job Town</label>
             
             <textarea
-            cols="100" rows="100"
             value={area}
             required
             onChange={(e)=>setArea(e.target.value)}

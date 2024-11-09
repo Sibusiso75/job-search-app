@@ -1,9 +1,11 @@
 import React, { useEffect}from 'react'
 import axios from "axios"
 import {  useDispatch, useSelector } from 'react-redux'
-import { getUser } from '../../redux/slices/userslice'
+import { getUser,deleteUser } from '../../redux/slices/userslice'
 import { useNavigate } from 'react-router-dom'
 import AdminNav from './AdminNav'
+import { toast } from 'react-toastify'
+
 function Users() {
     let navigate = useNavigate()
     // <div className='d-flex vh-100 justify-content-center align-items-center'>
@@ -12,13 +14,27 @@ function Users() {
     const dispatch = useDispatch()
     const users = useSelector(state=>state.users.users)
 
+    async function removeUser(id){
+        try {
+            
+            const response = await axios.delete(`http://localhost:5000/deleteUser/${id}`)
+              if(response.data.status){
+                dispatch(deleteUser(id))
+                toast.success(response.data.message)
+              }
+              else{
+                toast.error(response.data.message)
+              }
+        } catch (error) {
+            toast.error(error)
+        }
+    }
   useEffect(() => {
            const fetchData = async ()=>{
     try {
         
-        const response = await axios.get("http://localhost:5000/users")
-         dispatch(getUser(response.data
-            ))
+        const response = await axios.get("http://localhost:5000/admin")
+         dispatch(getUser(response.data))
     } catch (error) {
             console.log(error)
         }
@@ -40,30 +56,24 @@ function Users() {
 
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Admin</th>
-                        <th>Gender</th>
-                        <th>Age</th>
-                        {/* <th>Password</th> */}
+                       <th>Admin</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        users.map((user)=>{
+                        users.map(user=>{
                             
                             return <tr key={user.id}>
                               <td>{user.id}</td>
 
                                 <td>{user.username}</td>
                                 <td>{user.email}</td>
-                                <td>{user.isAdmin}</td>
-                                <td>{user.gender}</td>
-                                <td>{user.age}</td>
-                                {/* <td>{user.password}</td> */}
+                              
 
                                <td>
                                 <button onClick={()=>navigate(`/user/${user.id}`)}className='btn btn-sm btn-secondary me-2'>Edit</button>
-                                <button className='btn btn-sm btn-danger'>Delete</button>
+                                <button onClick={()=>removeUser(user.id)}className='btn btn-sm btn-danger'>Delete</button>
                                </td>
                             </tr>
                         })

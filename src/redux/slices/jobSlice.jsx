@@ -11,19 +11,24 @@ const jobSlice = createSlice({
         },
         getJob:(state, action)=>{
          state.jobs = action.payload.map(job=>{
-        			
-            return {level:job.level,EmployeesResideInJoblocation:job.EmployeesResideInJoblocation,locationThatBestDescriptionsTheJob:job.locationThatBestDescriptionsTheJob,numberOfPeopleToHire:job.numberOfPeopleToHire,jobType:job.jobType,province:job.province,area:job.area,posted:job.posted,id:job.id,title:job.title,description:job.description, url:job.url,isAdmin:job.isAdmin}
+            return {id:job._id,title:job.title,numberOfPeopleToHire:job.numberOfPeopleToHire,
+                description:job.description,createdAt:job.createdAt,
+                username:job.username,
+                userId:job.userId,
+                jobLocation:job.jobLocation,
+                
+                reside:job.reside,jobUrl:job.jobUrl,province:job.province,
+                area:job.area,jobType:job.jobType}
         })
+        
         },
         updateJob:(state, action)=>{
-            const index = state.jobs.findIndex(job=>job.id===action.payload.id)
+            const index = state.jobs.findIndex(job=>job._id===action.payload.id)
             state.jobs[index]={
-               EmployeesResideInJoblocation:job.EmployeesResideInJoblocation,
-               locationThatBestDescriptionsTheJob:job.locationThatBestDescriptionsTheJob,
-               numberOfPeopleToHire:job.numberOfPeopleToHire,jobType:job.jobType,page:job.page,countJobs:job.countJobs,pages:job.pages,province:job.province,area:job.area,posted:job.posted,id:job.id,title:job.title,level:job.level,description:job.description,requirements:job.requirements, url:job.url,isAdmin:job.isAdmin}
+                userId,username,title,createdAt,numberOfPeopleToHire,description,jobLocation,reside,jobUrl,province,area,jobType}
             
         },
     }
 })
-export const {addjob, getJob, updateJob}=jobSlice.actions
+export const {addJob, getJob, updateJob}=jobSlice.actions
 export default jobSlice.reducer

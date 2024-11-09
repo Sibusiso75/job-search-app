@@ -1,49 +1,47 @@
 import React, { useState, useEffect } from 'react'
-import JobProps from '../../JobSeeker/Home/JobProps'
 import axios from "axios"
 import { useDispatch, useSelector } from 'react-redux'
 // import { getJob } from '../../../../redux/slices/jobSlice'
 import { getUser } from '../../../../redux/slices/userslice'
-import { getemployer } from '../../../../redux/slices/employerslice'
+import { loggedIn,getEmployer } from '../../../../redux/slices/employerslice'
 import { FaUserCircle, FaHome, FaWindowClose, FaAlignJustify, FaChevronRight, FaWindowMaximize, FaWindowMinimize, FaRegWindowClose } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { MdArticle, MdOutlineLogout, MdWork } from 'react-icons/md'
 import { BsJustify, BsJustifyLeft } from 'react-icons/bs'
+
 
 function EmployerHome() {
   let navigate = useNavigate()
   const dispatch = useDispatch()
   // const jobs = useSelector(state=>state.jobs.jobs)
   const users = useSelector(state => state.users.users)
-  // const employers = useSelector(state => state.employers.employers)
+  // const loggedIn = useSelector(state => state.employers.loggedIn)
   const [search, setSearch] = useState("")
   const [filterCategory, setFilterCategory] = useState("")
   const [show, setShow] = useState(false)
   const [filterByExperience, setFilterByExperience] = useState(0)
+  const [username, setUsername] = useState("")
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
+
+  useEffect(()=>{
+    const verifyUser = async ()=>{
+
+      const res = await axios.get("http://localhost:5000/verify-employer")
+      if(res.data.status){
+        dispatch(loggedIn(res.data.status))
+        setUsername(res.data.username)
+        
         const response = await axios.get("http://localhost:5000/users")
         dispatch(getUser(response.data))
-      } catch (error) {
-        console.log(error)
       }
-
-    }
-    fetchData()
-  }, [])
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/employers")
-        dispatch(getemployer(response.data))
-      } catch (error) {
-        console.log(error)
+      else{
+        navigate("/employerLogin")
       }
     }
-    fetchData()
-  }, [])
+    verifyUser()
+  },[])
+ 
+  
   //  useEffect(() => {
   //    const fetchJobs = async ()=>{
   //     const response = await fetch("http://localhost:5000/jobs")
@@ -67,7 +65,7 @@ function EmployerHome() {
         position: "absolute", right: "2px", display: "flex", flexDirection: "column",
         gap: "1rem", float: "right", background: "black", color: "white", marginRight: "0px", width: "300px", padding: "10px"
       }}>
-        <Link to="/employerProfile/1"><FaUserCircle /> Sibusiso Matebese <FaChevronRight style={{ float: "right" }} /></Link>
+        <Link to="/employerProfile/2"><FaUserCircle /> {username} <FaChevronRight style={{ float: "right" }} /></Link>
         <Link to="/employerArticles"><MdArticle /> Articles  <FaChevronRight style={{ float: "right" }} /></Link>
         <Link to="/employerJobs/1"> <MdWork /> My Jobs<FaChevronRight style={{ float: "right" }} /></Link>
         <Link to="/employerLogin"> <MdOutlineLogout /> Log out  <FaChevronRight style={{ float: "right" }} /></Link>
@@ -110,7 +108,6 @@ function EmployerHome() {
         {
           users.filter((user) => {
             return user.username.toLowerCase().includes(search.toLowerCase())
-              || user.jobTitle.toLowerCase().includes(search.toLowerCase())
 
           }).map((user) => {
 
@@ -118,7 +115,7 @@ function EmployerHome() {
             >
 
               <span >
-               <FaUserCircle onClick={() => navigate(`/profile/${user.id}/personalDetails/${user.id}`)} style={{ fontSize: "50px" }} /><> <b>{user.username} </b>- {user.jobTitle}</>
+               <FaUserCircle onClick={() => navigate(`/profileView/${user.id}`)} style={{ fontSize: "50px" }} /><> <b>{user.username} </b></>
               </span>
 
 

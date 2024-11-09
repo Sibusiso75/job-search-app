@@ -1,28 +1,25 @@
-// import axios from "axios"
-// import {toast} from "react-toastify"
+import axios from "axios"
+import {toast} from "react-toastify"
 import React, {useState} from "react"
 import { useNavigate } from 'react-router-dom'
 
 function ForgotPassword() {
   const [email, setEmail]= useState("")
-  const [error, setError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState("")
        let navigate = useNavigate()
 
+       axios.defaults.withCredentials=true;
     async function handleSubmit(e){
       e.preventDefault()
       try {
-        const response = await axios.post("http://localhost:5000/forgot-password",{password})
+        const response = await axios.post("https://job-search-api-n5ob.onrender.com/forgot-password",{email})
         if(response.data.status){
           toast.success(response.data.message)
         }
         else{
-          setError(true)
-          setErrorMessage(response.data.message)
+         toast.error(response.data.message)
         }
       } catch (error) {
-        setError(true)
-        setErrorMessage(response.data.error)
+        toast.error(error)
       }
     }
   return (
@@ -40,7 +37,6 @@ function ForgotPassword() {
               <button onClick={()=>navigate("/login")} className='btn btn-sm btn-danger me-2'>Go back</button>
               <button type="submit" className='btn btn-sm btn-success'>Send</button>              </span>
           </form> 
-            {error?<p>{errorMessage}</p>:null}
             
     </>
   )

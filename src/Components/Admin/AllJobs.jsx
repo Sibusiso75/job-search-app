@@ -12,7 +12,7 @@ function AllJobs() {
       const fetchData = async ()=>{
 try {
    
-   const response = await fetch("http://localhost:5000/jobs")
+   const response = await fetch("http://localhost:5000/allJobs")
    const jobsData = await response.json()
    dispatch(getJob(jobsData))
 } catch (error) {
@@ -40,34 +40,34 @@ className='btn btn-sm btn-success'>
                 <thead >
                     <tr>
                         <th >ID</th>
+                        <th>UserId</th>
+                        <th>Posted By</th>
                         <th >Title</th>
-                        <th>Level</th>
-                        <th>Description</th>
-                        <th>posted</th>
-                        <th>Link</th>
                         <th>Number of People to hire</th>
-                        <th>Which option best describes this job's location?</th>
-                        <th>Are employees required to reside in a specific location?</th>
-                        <th>Job type</th>
-                        <th>Location</th>
+                        <th>Description</th>
+                        <th>Job location</th>
+                        <th>Reside In</th>
+                        <th>Job url</th>
+                        <th>Job Type</th>
+                        <th>Job town</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                 {
        jobs.map((j)=>{
-          const {id,EmployeesResideInJoblocation, title,jobType,numberOfPeopleToHire,locationThatBestDescriptionsTheJob, description,level, posted,url, province, area}=j;
+          const {id,userId, username,title,numberOfPeopleToHire,description,jobLocation,reside,jobUrl,province,area,jobType
+          }=j;
             return <tr key={id} >
-
 <td>{id}</td>
+<td>{userId}</td>
+<td>{username}</td>
 <td>{title}</td>
-<td>{level}</td>
-<td>{description}</td>
-<td>{posted}</td>
-<td>{url}</td>
 <td>{numberOfPeopleToHire}</td>
-<td>{locationThatBestDescriptionsTheJob}</td>
-<td>{EmployeesResideInJoblocation}</td>
+<td>{description}</td>
+<td>{jobLocation}</td>
+<td>{reside}</td>
+<td>{jobUrl}</td>
 <td>{jobType}</td>
 <td >{province}, {area}</td>
 

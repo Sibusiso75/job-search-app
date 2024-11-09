@@ -1,5 +1,5 @@
-// import Axios from "axios"
-// import {toast} from "react-toastify"
+import Axios from "axios"
+import {toast} from "react-toastify"
 import {  useNavigate } from 'react-router-dom'
 import React, {useState} from "react"
 
@@ -13,31 +13,24 @@ function AdminLogin() {
     let navigate = useNavigate()
     // https://mealapp-api-2.onrender.com/login
 
+    
+    Axios.defaults.withCredentials=true;
     function handleSubmit(e){
         e.preventDefault()
-        if(email=="sibusisomatebese75@gmail.com" && password=="cristiano12@"){
-            navigate("/admin/dashboard")
-        }
-        else{
-      setError(true)
-      setErrorMessage("Incorrect name or password. Please try again.")
-        }
-    }
-//     Axios.defaults.withCredentials=true;
-//     function handleSubmit(e){
-//         e.preventDefault()
-//         Axios.post("http://localhost:5000/login", 
-//           { email, password}).then(response =>{
-//             if(response.data.status){
-//                 navigate("/")
-//             }
-//             else {
-//                 toast.error("Invalid login details")
-//             }
-//         }).catch(err =>{
-//             toast.error("error")
-//         })
-//    }
+        Axios.post("http://localhost:5000/adminLogin", 
+          { email, password}).then(response =>{
+            if(response.data.status){
+                navigate("/admin/dashboard")
+                toast.success("Successfully logged in")
+            }
+            
+            else {
+                toast.error(response.data.message)
+            }
+        }).catch(err =>{
+            toast.error("error")
+        })
+   }
    
   return (
     <div>
@@ -59,7 +52,6 @@ function AdminLogin() {
             
             placeholder='Password'/>
             <button onClick={handleSubmit} className="btn2">Login</button>
-            {error&&<p style={{color:"red"}}>{errorMessage}</p>}
          
         
             </div>

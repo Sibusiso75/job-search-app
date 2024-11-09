@@ -1,8 +1,12 @@
 import React, {useState} from "react"
 import axios from "axios"
 import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch,useSelector } from "react-redux"
+import { userLoggedIn } from "../../../../redux/slices/userslice"
+import { toast } from "react-toastify"
 
 function Login() {
+  const dispatch = useDispatch()
        const [email, setEmail]= useState("")
        const [password, setPassword]= useState("")
        const [error, setError] = useState(true)
@@ -14,17 +18,22 @@ function Login() {
     async function handleSubmit(e){
       e.preventDefault()
       try {
-        const response = await axios.post("http://localhost:5000/login",{email,password})
+        const response = await axios.post("https://job-search-api-n5ob.onrender.com/login",
+        {email,password})
      if(response.data.status){
+       dispatch(userLoggedIn(response.data.status))
       navigate("/")
+    toast.success(response.data.message)
      }
+    //  else if(response.data.emailSent){
+    //   toast.success(response.data.message)
+    //  }
      else{
-      setError(true)
-      setErrorMessage(response.data.message)
+      toast.error(response.data.message)
      }
+
       } catch (error) {
-        setError(true)
-        setErrorMessage(response.data.error)
+        console.log(error)
       }
      
      
@@ -38,22 +47,19 @@ function Login() {
             <h2 style={{marginLeft:"10%"}}>Login as a job seeker</h2>
         
 
-       <form onSubmit={handleSubmit}> 
+       <form> 
             <input type="email" 
              
             onChange={(e)=>setEmail(e.target.value)}
             placeholder='Email'/>
-            {error &&<p style={{color:"red"}}>{errorMessage}</p>}
             <input type="password" 
              
             onChange={(e)=>setPassword(e.target.value)}
             placeholder='Password'/>
-            {error &&<p style={{color:"red"}}>{errorMessage}</p>}
 
-            <button type="submit" className="btn2">Login</button>
+            <button onClick={handleSubmit} className="btn2">Login</button>
 
         </form> 
-            {error&&<p style={{color:"red"}}>{errorMessage}</p>}
         <Link style={{color:"blue"}} to="/forgotPassword">Forgot Password?</Link>
             <p>Don't have an account? <Link style={{color:"blue"}} to ="/register">
                 Sign up

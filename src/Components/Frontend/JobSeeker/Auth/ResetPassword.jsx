@@ -1,12 +1,11 @@
 import axios from "axios"
+import React , {useState} from "react"
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import {toast} from "react-toastify"
 
 function ResetPassword() {
    
     const [password, setPassword]= useState("")
-    const [error, setError] = useState(false)
-    const [errorMessage, setErrorMessage] = useState("")
     let navigate = useNavigate()
     let {token} = useParams()
 
@@ -14,7 +13,7 @@ function ResetPassword() {
     async function handleSubmit(e){
         e.preventDefault()
         try {
-           const response = await axios.post(`http://localhost:5000/reset-password/${token}`, 
+           const response = await axios.post(`https://job-search-api-n5ob.onrender.com/reset-password/${token}`, 
             {password})
              if(response.data.status){
                  toast.success(response.data.message)
@@ -23,14 +22,12 @@ function ResetPassword() {
                  }, 3000);
              }
              else{
-                setError(true)
-                setErrorMessage(response.data.message)
+              toast.error(response.data.message)
              }
             
         
         } catch (error) {
-            setError(true)
-            setErrorMessage(response.data.error)
+           toast.error(error)
         }
       
       
@@ -53,7 +50,6 @@ function ResetPassword() {
                 Login
             </Link></div>
         </form>
-        {error?<p>{errorMessage}</p>:null}
     </div>
   )
 }

@@ -11,21 +11,28 @@ const userSlice = createSlice({
         addUser:(state, action)=>{
            state.users.push(action.payload)
         },
+    userLoggedIn:(state, action)=>{
+        state.loggedIn=true
+    },
+
         getUser:(state, action)=>{
          state.users = action.payload.map(user=>{
-            return {id:user.id,jobTitle:user.jobTitle,phoneNumber:user.phoneNumber,province:user.province,suburb:user.suburb,postalCode:user.postalCode,highestQualification:user.highestQualification,age:user.age,username:user.username, gender:user.gender,email:user.email, isAdmin:user.isAdmin}
+            return {id:user._id,username:user.username,email:user.email,isAdmin:user.isAdmin}
         })
         },
-        updateuser:(state, action)=>{
-            const index = state.users.findIndex(user=>user.id===action.payload.id)
+        
+       
+        updateUser:(state, action)=>{
+            const index = state.users.findIndex(user=>user._id==action.payload.id)
             state.users[index]={
-                id:user.id,highestQualification:user.highestQualification,age:user.age,username:user.username, gender:user.gender,email:user.email, isAdmin:user.isAdmin
+                id:user._id,username:user.username,email:user.email, isAdmin:user.isAdmin
             }
         },
-        deleteuser:(state, action)=>{
-            state.users.filter(user=>user.id!==action.payload.id)
+        deleteUser:(state, action)=>{
+            state.users.filter(user=>user._id!==action.payload.id)
         }
     }
 })
-export const {addUser, getUser, updateuser, deleteuser}=userSlice.actions
+
+export const {addUser, getUser,updateUser, deleteUser,userLoggedIn}=userSlice.actions
 export default userSlice.reducer

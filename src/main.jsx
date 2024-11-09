@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   pauseOnHover
   theme="light"
   />
-    ,
+    
     </Provider>
   </React.StrictMode>
 )

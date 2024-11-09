@@ -1,50 +1,53 @@
 import React, {useState,useEffect} from 'react'
-import JobProps from './JobProps'
 import axios from "axios"
 import { useDispatch, useSelector } from 'react-redux'
 import { getJob } from '../../../../redux/slices/jobSlice'
-import { getUser } from '../../../../redux/slices/userslice'
-import { FaUserCircle, FaHome, FaSearch, FaChevronRight, FaAlignJustify, FaAlignLeft, FaWindowClose, FaAlignRight, FaDoorClosed, FaRegWindowClose, FaStickyNote, FaInfo, FaInfoCircle} from 'react-icons/fa'
+import { saveJob } from '../../../../redux/slices/savedJobsSlice'
+import { getUser,userLoggedIn } from '../../../../redux/slices/userslice'
+import {FaSearchLocation, FaUserCircle, FaHome, FaSearch, FaChevronRight, FaAlignJustify, FaAlignLeft, FaWindowClose, FaAlignRight, FaDoorClosed, FaRegWindowClose, FaStickyNote, FaInfo, FaInfoCircle} from 'react-icons/fa'
 import { Link, useNavigate, useLocation} from 'react-router-dom'
 import { Col, Row } from 'react-bootstrap'
-import { MdAlignHorizontalLeft, MdAlignVerticalCenter, MdArrowDropDown, MdArticle, MdCloseFullscreen, MdDarkMode, MdOutlineAlignVerticalCenter, MdOutlineLogout, MdTab, MdWork } from 'react-icons/md'
+import {BsThreeDotsVertical} from 'react-icons/bs'
 
-// const salaries = [
-//   {name:'$1 to $50', value:`1-50`},
-//   {name:'$51 to $200', value:`51-200`},
-//   {name:'$201 to $1000', value:`201-1000`},
-//   {name:'$51 to $200', value:`51-200`},
+import {MdSave, MdAlignHorizontalLeft, MdAlignVerticalCenter, MdArrowDropDown, MdArticle, MdCloseFullscreen, MdDarkMode, MdOutlineAlignVerticalCenter, MdOutlineLogout, MdTab, MdWork } from 'react-icons/md'
+import { toast } from 'react-toastify'
 
-// ]
-// const salaries = [
-//   {name:'R1K to R4.9k', value:`1000-50000`},
-//   {name:'R5K to R19.9K', value:`5000-20000`},
-//   {name:'R20K to R49.9k', value:`20001-100000`},
-//   {name:'R50k to R100k', value:`20001-100000`},
-//   {name:'R100k to 1m', value:`10000`},
-//   {name:'R1m+', value:`1000000 - 1000000`},
-
-
-// ]
 function Home() {
+  
   let navigate = useNavigate()
   const dispatch = useDispatch()
+  const users = useSelector(state=>state.users.users)
   const jobs = useSelector(state=>state.jobs.jobs)
-  // const loggedIn = useSelector(state=>state.users.loggedIn)
+  const loggedIn = useSelector(state=>state.users.loggedIn)
   const [show, setShow] = useState(false)
   const [query, setQuery]= useState("")
-  // const [id, setId] = useState(null)
+  const [username, setUsername] = useState("")
+  const [showSave, setShowSave]= useState(false)
+  const [id, setId] = useState("")
+  const [userId, setUserId] = useState("")
+  const [savedJobs, setSavedJobs] = useState([])
+//   const [title, setTitle] = useState("")
+// const [numberOfPeopleToHire, setNumberOfPeopleToHire] = useState("")
+// const [description, setDescription] = useState("")
+// const [jobLocation, setJobLocation] = useState("")
+// const [reside, setReside] = useState("")
+// const [jobUrl, setJobUrl] = useState("")
+// const [province, setProvince]= useState("")
+// const [area, setArea]= useState("")
+// const [jobType, setJobType] = useState("")
+// const [email, setEmail] = useState("")
 
-  // axios.defaults.withCredentials=true;
-  // async function handleLogOut(e){
-  //   e.preventDefault()
-  //   const response = await axios.get("http://localhost:5000/logout")
-  //     if(response.data.status){
-  //         dispatch(loggedIn(false))
-  //         navigate("/login")
-  //     }
-  // }
 
+
+  axios.defaults.withCredentials=true;
+  async function handleLogOut(e){
+    e.preventDefault()
+    const response = await axios.get("http://localhost:5000/logout")
+      if(response.data.status){
+          navigate("/login")
+    
+      }
+  }
   // const {search}= useLocation()
     // const [categories, setCategories]= useState("")
 // const searchParams =new URLSearchParams(search)
@@ -94,24 +97,56 @@ function Home() {
 //    console.log(error) }}
 // fetchCategories()
 // }, [])
+
+// https://job-search-api-n5ob.onrender.com/jobs
+useEffect(()=>{
+  axios.get("https://job-search-api-n5ob.onrender.com/verify")
+  .then(res=>{
+   if(res.data.status){
+     dispatch(userLoggedIn(res.data.status))
+     setUsername(res.data.username)
+     setId(res.data.id)
+     setUserId(res.data.id)
+   }
+   
+  })
+ },[])
  useEffect(() => {
    const fetchJobs = async ()=>{
-    const response = await fetch("https://job-search-api-n5ob.onrender.com/jobs")
+    const response = await fetch("https://job-search-api-n5ob.onrender.com/allJobs")
     const data = await response.json()
 
     dispatch(getJob(data))
    }
    fetchJobs()
  }, [])
-//  useEffect(()=>{
-//    const fetchUser =async ()=>{
-//     const response = await axios.get("http://localhost:5000/verify")
-//         dispatch(loggedIn(true))
-//         setUsername(response.data.username)
-//         setId(response.data.id)
-//    }
-//    fetchUser()
-//  },[])
+
+//  function showingSave(){
+//   setShowSave(!showSave)
+//  }
+
+//  async function save(e){
+//   e.preventDefault()
+//   try {
+//     const response = await axios.post("https://job-search-api-n5ob.onrender.com/save-job",{
+//       userId,username
+//       })
+
+//     if(response.data.status){
+//       setSavedJobs(jobs)
+//       dispatch(saveJob(response.data))
+//       toast.success(response.data.message)
+//       console.log(response.data)
+//     }
+//     else {
+//       navigate("/login")
+//     }
+//   } catch (error) {
+//     toast.error("error")
+//     console.log(error)
+//   }
+// }
+
 
 
 
@@ -133,7 +168,7 @@ function Home() {
         <header className="cartNav">
         <Link to="/" style={{borderBottom:"2px double white"}} ><FaHome/> Home </Link>
         <Link to="/posts"><MdArticle/> Posts</Link>
-          <Link to="/savedJobs"> <MdWork/> Saved Jobs</Link>
+          {/* <Link to="/savedJobs"> <MdWork/> Saved Jobs</Link> */}
        <br />
                 <div className='alignRight' onClick={()=>setShow(!show)} >
                                  {show?<div><FaRegWindowClose/></div>:<div><FaAlignJustify/></div>} 
@@ -142,22 +177,42 @@ function Home() {
       <br /><br />
 
       
-     {show?  <div style={{position:"fixed",right:"2px",display:"flex",flexDirection:"column",
-     gap:"1rem",float:"right",background:"rgb(0,0,10)", color:"white", marginRight:"0px",width:"300px", padding:"10px"}}>
+     {show?  <div style={{background:"black",position:"fixed",right:"2px",display:"flex",flexDirection:"column",
+     gap:"1rem",float:"right", color:"white", marginRight:"0px",width:"300px", padding:"15px"}}>
 
-      {/* {loggedIn?<div>
+      {loggedIn?<div style={{display:"flex", flexDirection:"column"}}>
+       
         <Link to={`/profile/${id}`} style={{borderBottom:"1px double white"}}><FaUserCircle /> {username} <FaChevronRight style={{float:"right"}}/></Link>
           <Link to="/login" style={{borderBottom:"1px double white"}}> <MdOutlineLogout/> Log out  <FaChevronRight style={{float:"right"}}/></Link>
         </div>
-        : */}
-        <div style={{position:"fixed",right:"2px",display:"flex",flexDirection:"column",
-     gap:"1rem",float:"right",background:"rgb(0,0,10)", color:"white", marginRight:"0px",width:"300px", padding:"10px"}}>
-          {/* <Link to="/register">Register</Link>
-            <button onClick={handleLogOut}>Log out</button> */}
-            <Link to="/info">Info <FaInfoCircle/> <FaChevronRight style={{float:"right"}}/> </Link>
+        : 
+        <div >
+            {
+              !loggedIn?
+              <div style={{
+                position: "absolute", right: "2px", display: "flex", flexDirection: "column",
+                gap: "0.3rem", float: "right", background: "black", color: "white", marginRight: "0px", width: "300px", padding: "10px"
+              }}>
+
+                <Link to="/login" >
+                  <FaUserCircle/> <span>Login</span> <FaChevronRight style={{float:"right"}}/>
+                </Link>
+                    <Link to="/register"><FaUserCircle/>  <span>Register </span> <FaChevronRight style={{float:"right"}}/>
+                    </Link>
+              </div>
+              :
+              <div style={{
+                position: "absolute", right: "2px", display: "flex", flexDirection: "column",
+                gap: "1rem", float: "right", background: "black", color: "white", marginRight: "0px", width: "300px", padding: "10px"
+              }}>
+ <Link><FaUserCircle /><p style={{color:"white"}}>{username}</p> <FaChevronRight style={{ float: "right" }} /></Link>
+                <button onClick={handleLogOut}>Log out</button> 
+
+              </div>
+            }
 
           </div>
-{/* } */}
+}
 
               
               
@@ -251,11 +306,27 @@ function Home() {
                   job.province.toLowerCase().includes(query.toLowerCase())||
 
                  job.area.toLowerCase().includes(query.toLowerCase())
-                  || job.posted.toLowerCase().includes(query.toLowerCase())
                   
 
                 }).map((job)=>{
-                      return <JobProps key={job.id} {...job}/>                               
+                      return  <div key={job.id} className='itemsContainer'>
+                      <div  style={{display:"flex", flexDirection:"column"}}  onClick={()=>navigate(`/job/${job.id}`)}>
+                                    <p>Job title - <b>{job.title}</b></p>
+                                    <p>Posted in {job.createdAt}</p>
+                                    <p><FaSearchLocation/>{job.province}, {job.area}</p>
+                                   
+                                  </div>
+                                  {/* <div style={{display:"flex", justifyContent:"flex-end"}}>
+            
+                                     <BsThreeDotsVertical style={{fontSize:"25px"}} onClick={showingSave} /> 
+                                  
+                                   {showSave?
+                                    <div>
+                                       <button onClick={save} style={{background:"black",color:"white"}}> Save job</button>
+                                  </div>:null}  
+            
+                                      </div> */}
+                                </div>                            
                 })
             }
             {/* {[...Array(pages).key()].map((x)=>(

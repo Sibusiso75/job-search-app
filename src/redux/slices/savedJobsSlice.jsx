@@ -1,22 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const savedJobsSlice = createSlice({
-    name:"jobs",
+    name:"saveJobs",
     initialState:{
         savedJobs:[]
     },
     reducers:{
-        addJob:(state, action)=>{
+        saveJob:(state, action)=>{
            state.savedJobs.push(action.payload)
         },
-        getSavedJob:(state, action)=>{
+        getsavedJob:(state, action)=>{
          state.savedJobs = action.payload.map(job=>{
-        			
-            return {EmployeesResideInJoblocation:job.EmployeesResideInJoblocation,locationThatBestDescriptionsTheJob:job.locationThatBestDescriptionsTheJob,numberOfPeopleToHire:job.numberOfPeopleToHire,jobType:job.jobType,province:job.province,area:job.area,posted:job.posted,id:job.id,title:job.title,description:job.description, url:job.url,isAdmin:job.isAdmin}
+            return {id:job._id,username:job.username,userId:job.userId, savedJobs}
         })
+        
         },
-       
+        updateJob:(state, action)=>{
+            const index = state.savedJobs.findIndex(job=>job._id===action.payload.id)
+            state.savedJobs[index]={
+                title,createdAt,numberOfPeopleToHire,description,jobLocation,reside,jobUrl,province,area,jobType}
+            
+        },
     }
 })
-export const {addjob, getSavedJob}=savedJobsSlice.actions
+export const {saveJob, getsavedJob, updateJob}=savedJobsSlice.actions
 export default savedJobsSlice.reducer

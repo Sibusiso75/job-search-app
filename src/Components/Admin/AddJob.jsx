@@ -1,6 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import axios from "axios"
+
 import { FaHome } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
+import { addJob } from '../../redux/slices/jobSlice'
+import { toast } from 'react-toastify'
+import { useDispatch } from 'react-redux'
 
  /*inputs -
    1. Your company's name
@@ -21,8 +26,10 @@ import { useNavigate } from 'react-router-dom'
    11. 
   */
 function AddJob() {
+  // const [companyName, setCompanyName] = useState(second)
+  const dispatch = useDispatch()
 const [title, setTitle] = useState("")
-const [numberOfPeopleToHire, setNumberOfPeopleToHire] = useState(0)
+const [numberOfPeopleToHire, setNumberOfPeopleToHire] = useState("")
 const [description, setDescription] = useState("")
 const [jobLocation, setJobLocation] = useState("")
 const [reside, setReside] = useState("")
@@ -30,15 +37,41 @@ const [jobUrl, setJobUrl] = useState("")
 const [province, setProvince]= useState("")
 const [area, setArea]= useState("")
 const [jobType, setJobType] = useState("")
+const [userId, setUserId] = useState("")
+const [username, setUsername] = useState("")
+const [email, setEmail] = useState("")
 
- 
+useEffect(()=>{
+  axios.get("http://localhost:5000/verify")
+  .then(res=>{
+   if(res.data.status){
+     setUsername(res.data.username)
+     setEmail(res.data.email)
+     setUserId(res.data.id)
+   }
+   else {
+     toast.error("User not verified")
+   }
+  })
+ },[])
+
+
 let navigate = useNavigate()
-function handleSubmit(e){
+async function handleSubmit(e){
   e.preventDefault()
-  if(title && level &&description && jobUrl!==""){
-    navigate("/")
-  }
+try {
+  const response = await axios.post("http://localhost:5000/addJob",{userId,username,title,numberOfPeopleToHire,description,jobLocation,reside,jobUrl,province,area,jobType})
+     if(response.data.status){
+       dispatch(addJob(response.data))
+      
+      toast.success("Job has been added")
+      navigate("/admin/jobs")
+     }
   
+} catch (error) {
+  toast.error("error")
+
+}
 }
 
   return (
@@ -47,29 +80,31 @@ function handleSubmit(e){
       style={{background:"green", color:"whitesmoke", fontWeight:"bold"}}>
         <FaHome/> Back home
       </button>
+      <p></p>
+      <b>{username} - {userId}</b>
 
             <h2 style={{marginLeft:"10%"}}>Add job post</h2>
         
 
-       
+       <form onSubmit={handleSubmit}>
+
           
-          <label htmlFor="">Job Title</label>
+          <p>Job Title</p>
             <input type="text" 
              required
-            onChange={(e)=>setTitle(e.target.value)}
-            
-            placeholder='e.g Software Developer'/>
-                         <label htmlFor="">Job description</label>
-            <textarea  
+             onChange={(e)=>setTitle(e.target.value)}
+             
+             placeholder='e.g Software Developer'/>
+                         <p>Job description</p>
+            <textarea
              required
             onChange={(e)=>setDescription(e.target.value)}
             
             placeholder='Job description ...'/>
-              <label htmlFor="">Number of People to hire for this job</label><br />
+              <p>Number of People to hire for this job</p><br />
               <select onChange={(e)=>setNumberOfPeopleToHire(e.target.value)}>
               <option value="Select an option">Select an option</option>
               <option value="1">1</option>
-              <option value="2">2</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
@@ -79,7 +114,6 @@ function handleSubmit(e){
               <option value="8">8</option>
               <option value="9">9</option>
               <option value="10">10</option>
-              <option value="10+">10+</option>
               <option value="I have an ongoing need to fill this role">
                 I have an ongoing need to fill this role
                 </option>
@@ -89,11 +123,11 @@ function handleSubmit(e){
 
                          </select>
    
-         <label htmlFor="">Job Url</label>
+         <p>Job Url</p>
              <input type="url"    required
              placeholder='Enter your website url ...'
-            onChange={(e)=>setJobUrl(e.target.value)}/>
-               <label htmlFor="">Which option best describes this job's location?</label>
+             onChange={(e)=>setJobUrl(e.target.value)}/>
+               <p>Which option best describes this job's location?</p>
                
              <select onChange={(e)=>setJobLocation(e.target.value)}>
               <option value="select an option">select an option</option>
@@ -102,19 +136,19 @@ function handleSubmit(e){
               <option value="Hybrid. The job combines working in office and remotely">Hybrid. The job combines working in office and remotely </option>
               <option value="On the road. The job requires regular travel">On the road. The job requires regular travel </option>
             </select>
-            <label htmlFor="">
+            <p>
               Are employees required to reside in a specific location?
 
-</label>
+</p>
 <select onChange={(e)=>setReside(e.target.value)}>
               <option value="select an option">select an option</option>
               <option value="Yes">Yes</option>
               <option value="No">No </option>
             </select>
-            <label htmlFor="">Which province is this job located?</label>
+            <p>Which province is this job located?</p>
             <select onChange={(e)=>setProvince(e.target.value)}>
               <option value="select an option">select an option</option>
-              <option value="Eatern Cape">Eatern Cape</option>
+              <option value="Eastern Cape">Eastern Cape</option>
               <option value="Western Cape">Western Cape </option>
               <option value="Northern Cape">Northern Cape </option>
               <option value="North West">North West </option>
@@ -124,7 +158,7 @@ function handleSubmit(e){
               <option value="Limpopo">Limpopo </option>
               <option value="Mpumalanga">Mpumalanga </option>
             </select>
-            <label htmlFor="">Job Type</label>
+            <p>Job Type</p>
             <select onChange={(e)=>setJobType(e.target.value)}>
               <option value="select an option">select an option</option>
               <option value="Full Time">Full Time</option>
@@ -134,15 +168,15 @@ function handleSubmit(e){
               <option value="Internship">Internship</option>
               <option value="Learnership">Learnership</option>
             </select>
-           <label htmlFor="">Job Town</label>
+           <p>Job Town</p>
             
             <textarea
-            cols="100" rows="100"
             required
             onChange={(e)=>setArea(e.target.value)}
             placeholder='Enter the town of where the job is located ...'/>
             <p>When a job seeker clicks 'apply' button to your job post, they will be directed to your website.</p>
             <button type="submit" className="btn2">Post</button>
+            </form>
          
         
        
